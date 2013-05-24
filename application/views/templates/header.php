@@ -14,11 +14,11 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="/">51daifan</a>
+            <a class="brand" href="/">我要带饭</a>
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Sign Out</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="#contact">登录</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

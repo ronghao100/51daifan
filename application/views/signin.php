@@ -1,4 +1,10 @@
-<form class="form-horizontal">
+
+<?php 
+$this->load->helper('form');
+echo validation_errors(); 
+echo form_open('index.php/signin/signin' ); 
+?>
+
   <div class="control-group">
     <label class="control-label" for="inputEmail">Email</label>
     <div class="controls">

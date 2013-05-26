@@ -110,6 +110,7 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array();
+$autoload['session'] = array();
 
 
 /* End of file autoload.php */

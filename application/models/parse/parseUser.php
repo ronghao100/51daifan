@@ -1,172 +1,178 @@
 <?php
 
-class parseUser extends parseRestClient{
+class parseUser extends parseRestClient
+{
 
-	public $authData;
+    public $authData;
 
-	public function __set($name,$value){
-		$this->data[$name] = $value;
-	}
+    public function __set($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
 
-	public function signup($username='',$password='',$email=''){
-		if($username != '' && $password != '' && $email != ''){
-			$this->username = $username;
-			$this->password = $password;
-			$this->email = $email;
-		}
+    public function signup($realname = '', $password = '', $email = '')
+    {
+        if ($realname != '' && $password != '' && $email != '') {
+            $this->username = $email;
+            $this->realname = $realname;
+            $this->password = $password;
+            $this->email = $email;
+        }
 
-		if($this->data['username'] != '' && $this->data['password'] != '' && $this->data['email'] != ''){
-			$request = $this->request(array(
-				'method' => 'POST',
-	    		'requestUrl' => 'users',
-				'data' => $this->data
-			));
-			
-	    	return $request;
-			
-		}
-		else{
-			$this->throwError('username and password fields are required for the signup method');
-		}
-		
-	}
+        if ($this->data['realname'] != '' && $this->data['username'] != '' &&
+            $this->data['password'] != '' && $this->data['email'] != ''
+        ) {
+            $request = $this->request(array(
+                'method' => 'POST',
+                'requestUrl' => 'users',
+                'data' => $this->data
+            ));
 
-	public function login(){
-		if(!empty($this->data['username']) || !empty($this->data['password'])	){
-			$request = $this->request(array(
-				'method' => 'GET',
-	    		'requestUrl' => 'login',
-		    	'data' => array(
-		    		'password' => $this->data['password'],
-		    		'username' => $this->data['username']
-		    	)
-			));
-			
-	    	return $request;			
-	
-		}
-		else{
-			$this->throwError('username and password field are required for the login method');
-		}
-	
-	}
+            return $request;
 
-	public function get($objectId){
-		if($objectId != ''){
-			$request = $this->request(array(
-				'method' => 'GET',
-	    		'requestUrl' => 'users/'.$objectId,
-			));
-			
-	    	return $request;			
-			
-		}
-		else{
-			$this->throwError('objectId is required for the get method');
-		}
-		
-	}
-	//TODO: should make the parseUser contruct accept the objectId and update and delete would only require the sessionToken
-	public function update($objectId,$sessionToken){
-		if(!empty($objectId) || !empty($sessionToken)){
-			$request = $this->request(array(
-				'method' => 'PUT',
-				'requestUrl' => 'users/'.$objectId,
-	    		'sessionToken' => $sessionToken,
-				'data' => $this->data
-			));
-			
-	    	return $request;			
-		}
-		else{
-			$this->throwError('objectId and sessionToken are required for the update method');
-		}
-		
-	}
+        } else {
+            $this->throwError('username and password fields are required for the signup method');
+        }
 
-	public function delete($objectId,$sessionToken){
-		if(!empty($objectId) || !empty($sessionToken)){
-			$request = $this->request(array(
-				'method' => 'DELETE',
-				'requestUrl' => 'users/'.$objectId,
-	    		'sessionToken' => $sessionToken
-			));
-			
-	    	return $request;			
-		}
-		else{
-			$this->throwError('objectId and sessionToken are required for the delete method');
-		}
-		
-	}
-	
-	public function addAuthData($authArray){
-		if(is_array($authArray)){			
-			$this->authData[$authArray['type']] = $authArray['authData'];
-		}
-		else{
-			$this->throwError('authArray must be an array containing a type key and a authData key in the addAuthData method');
-		}
-	}
+    }
 
-	public function linkAccounts($objectId,$sessionToken){
-		if(!empty($objectId) || !empty($sessionToken)){
-			$request = $this->request( array(
-				'method' => 'PUT',
-				'requestUrl' => 'users/'.$objectId,
-				'sessionToken' => $sessionToken,
-				'data' => array(
-					'authData' => $this->authData
-				)
-			));
+    public function login()
+    {
+        if (!empty($this->data['username']) || !empty($this->data['password'])) {
+            $request = $this->request(array(
+                'method' => 'GET',
+                'requestUrl' => 'login',
+                'data' => array(
+                    'password' => $this->data['password'],
+                    'username' => $this->data['username']
+                )
+            ));
 
-			return $request;
-		}
-		else{
-			$this->throwError('objectId and sessionToken are required for the linkAccounts method');
-		}		
-	}
+            return $request;
 
-	public function unlinkAccount($objectId,$sessionToken,$type){
-		$linkedAccount[$type] = null;
+        } else {
+            $this->throwError('username and password field are required for the login method');
+        }
 
-		if(!empty($objectId) || !empty($sessionToken)){
-			$request = $this->request( array(
-				'method' => 'PUT',
-				'requestUrl' => 'users/'.$objectId,
-				'sessionToken' => $sessionToken,
-				'data' => array(
-					'authData' => $linkedAccount
-				)
-			));
+    }
 
-			return $request;
-		}
-		else{
-			$this->throwError('objectId and sessionToken are required for the linkAccounts method');
-		}		
+    public function get($objectId)
+    {
+        if ($objectId != '') {
+            $request = $this->request(array(
+                'method' => 'GET',
+                'requestUrl' => 'users/' . $objectId,
+            ));
 
-	}
+            return $request;
 
-	public function requestPasswordReset($email){
-		if(!empty($email)){
-			$this->email - $email;
-			$request = $this->request(array(
-			'method' => 'POST',
-			'requestUrl' => 'requestPasswordReset',
-			'email' => $email,
-			'data' => $this->data
-			));
+        } else {
+            $this->throwError('objectId is required for the get method');
+        }
 
-			return $request;
-		}
-		else{
-			$this->throwError('email is required for the requestPasswordReset method');
-		}
+    }
 
-}
+    //TODO: should make the parseUser contruct accept the objectId and update and delete would only require the sessionToken
+    public function update($objectId, $sessionToken)
+    {
+        if (!empty($objectId) || !empty($sessionToken)) {
+            $request = $this->request(array(
+                'method' => 'PUT',
+                'requestUrl' => 'users/' . $objectId,
+                'sessionToken' => $sessionToken,
+                'data' => $this->data
+            ));
 
-	
+            return $request;
+        } else {
+            $this->throwError('objectId and sessionToken are required for the update method');
+        }
+
+    }
+
+    public function delete($objectId, $sessionToken)
+    {
+        if (!empty($objectId) || !empty($sessionToken)) {
+            $request = $this->request(array(
+                'method' => 'DELETE',
+                'requestUrl' => 'users/' . $objectId,
+                'sessionToken' => $sessionToken
+            ));
+
+            return $request;
+        } else {
+            $this->throwError('objectId and sessionToken are required for the delete method');
+        }
+
+    }
+
+    public function addAuthData($authArray)
+    {
+        if (is_array($authArray)) {
+            $this->authData[$authArray['type']] = $authArray['authData'];
+        } else {
+            $this->throwError('authArray must be an array containing a type key and a authData key in the addAuthData method');
+        }
+    }
+
+    public function linkAccounts($objectId, $sessionToken)
+    {
+        if (!empty($objectId) || !empty($sessionToken)) {
+            $request = $this->request(array(
+                'method' => 'PUT',
+                'requestUrl' => 'users/' . $objectId,
+                'sessionToken' => $sessionToken,
+                'data' => array(
+                    'authData' => $this->authData
+                )
+            ));
+
+            return $request;
+        } else {
+            $this->throwError('objectId and sessionToken are required for the linkAccounts method');
+        }
+    }
+
+    public function unlinkAccount($objectId, $sessionToken, $type)
+    {
+        $linkedAccount[$type] = null;
+
+        if (!empty($objectId) || !empty($sessionToken)) {
+            $request = $this->request(array(
+                'method' => 'PUT',
+                'requestUrl' => 'users/' . $objectId,
+                'sessionToken' => $sessionToken,
+                'data' => array(
+                    'authData' => $linkedAccount
+                )
+            ));
+
+            return $request;
+        } else {
+            $this->throwError('objectId and sessionToken are required for the linkAccounts method');
+        }
+
+    }
+
+    public function requestPasswordReset($email)
+    {
+        if (!empty($email)) {
+            $this->email - $email;
+            $request = $this->request(array(
+                'method' => 'POST',
+                'requestUrl' => 'requestPasswordReset',
+                'email' => $email,
+                'data' => $this->data
+            ));
+
+            return $request;
+        } else {
+            $this->throwError('email is required for the requestPasswordReset method');
+        }
+
+    }
+
+
 }
 
 ?>

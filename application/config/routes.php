@@ -38,6 +38,8 @@
 |
 */
 $route['account/register'] = 'account/register';
+$route['account/login'] = 'account/login';
+$route['account/logout'] = 'account/logout';
 $route['account'] = 'account';
 $route['default_controller'] = "pages/view";
 $route['(:any)'] = 'pages/view/$1';

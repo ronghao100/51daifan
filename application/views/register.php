@@ -8,10 +8,10 @@
         <fieldset>
             <legend>欢迎加入带饭的大家庭</legend>
             <div class="control-group">
-                <label class="control-label" for="username">姓名</label>
+                <label class="control-label" for="realname">姓名</label>
                 <div class="controls">
-                    <input type="text" name="username" id="username" value="<?php echo set_value('username'); ?>" placeholder="真实姓名">
-                    <?php echo form_error('username'); ?>
+                    <input type="text" name="realname" id="realname" value="<?php echo set_value('realname'); ?>" placeholder="真实姓名">
+                    <?php echo form_error('realname'); ?>
                 </div>
             </div>
             <div class="control-group">

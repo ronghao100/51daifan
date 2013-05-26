@@ -10,12 +10,10 @@ include 'parse/parse.php';
 class Account_model extends CI_Model
 {
 
-    public $parse_user;
     public $parse_query;
 
     public function __construct()
     {
-        $this->parse_user = new parseUser;
         $this->parse_query = new parseQuery('users');
     }
 
@@ -27,15 +25,24 @@ class Account_model extends CI_Model
         return count($user);
     }
 
-    public function register()
+    public function register($realname, $password, $email)
     {
-        $this->load->helper('url');
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $email = $this->input->post('email');
-        $return = $this->parse_user->signup($username, $password, $email);
-        $user = $return->results;
+        $parse_user = new parseUser;
+        $user = $parse_user->signup($realname, $password, $email);
         return $user;
+    }
+
+    public function login($email, $password)
+    {
+        $parse_user = new parseUser;
+        $parse_user->username = $email;
+        $parse_user->password = $password;
+        try {
+            $user = $parse_user->login();
+            return $user;
+        } catch (ParseLibraryException $e) {
+            return FALSE;
+        }
     }
 
 

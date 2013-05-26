@@ -18,8 +18,15 @@
 
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
-                    <li><a href="/account/login">登录</a></li>
-                    <li><a href="/account/register">注册</a></li>
+                    <?php if (!$logged_in)
+                    {
+                        echo '<li><a href="/account/login">登录</a></li>';
+                        echo '<li><a href="/account/register">注册</a></li>';
+                    }else{
+                        echo '<li><a href="/account/'.$userid.'">'.$realname.'</a></li>';
+                        echo '<li><a href="/account/logout">退出</a></li>';
+                    }
+                    ?>
                 </ul>
             </div>
             <!--/.nav-collapse -->

@@ -6,7 +6,7 @@
         <p>还在为午饭吃什么而苦恼？还在为地沟油而担心？</p>
 
         <p>
-            <a href="/index.php/account/register" class="btn btn-primary btn-large">
+            <a href="/account/register" class="btn btn-primary btn-large">
                 <strong>加入我们</strong> 注册
             </a>
         </p>

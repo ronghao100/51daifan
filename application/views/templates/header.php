@@ -18,8 +18,8 @@
 
             <div class="nav-collapse collapse pull-right">
                 <ul class="nav">
-                    <li><a href="/index.php/account/login">登录</a></li>
-                    <li><a href="/index.php/account/register">注册</a></li>
+                    <li><a href="/account/login">登录</a></li>
+                    <li><a href="/account/register">注册</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

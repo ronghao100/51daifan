@@ -1,7 +1,11 @@
 </div>
 <!-- /container -->
 
-<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>application/views/js/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>application/views/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>application/views/js/bootstrap-datepicker.js"></script>
+<script>
+    $('.datepicker').datepicker();
+</script>
 </body>
 </html>

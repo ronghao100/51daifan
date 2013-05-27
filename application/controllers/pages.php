@@ -10,6 +10,13 @@ include 'base.php';
 
 class Pages extends Base{
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('post_model');
+    }
+
     public function view($page='home')
     {
         if ( ! file_exists('application/views/'.$page.'.php'))
@@ -17,8 +24,20 @@ class Pages extends Base{
             // 页面不存在
             show_404();
         }
-        $data['title'] = '51daifan';
+        $data['active'] = 'home';
         $this->set_session_data($data);
+
+        $posts = $this->post_model->get_posts();
+        $data['posts'] = $posts;
+
+//        foreach($posts as $post)
+//        {
+//            foreach($post as $item)
+//            {
+//                echo var_dump($posts);
+//                echo $item->name;
+//            }
+//        }
 
         $this->load->view('templates/header', $data);
         $this->load->view($page, $data);

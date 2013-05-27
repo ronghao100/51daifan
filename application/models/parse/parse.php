@@ -100,6 +100,8 @@ class parseRestClient{
 		}
 
 		curl_setopt($c, CURLOPT_URL, $url);
+//        echo $c;
+//        echo $url;
 
 		$response = curl_exec($c);
 		$responseCode = curl_getinfo($c, CURLINFO_HTTP_CODE);

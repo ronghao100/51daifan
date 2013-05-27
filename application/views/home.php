@@ -82,9 +82,7 @@
                         <ul class="unstyled">
                             <li><a href="/account/<?php echo $item->user->objectId ?>">
                                     <strong>
-                                        <?php
-                                        echo $item->user->realname;
-                                        ?>
+                                        <?php echo $item->user->realname; ?>
                                     </strong>
                                 </a>
                             </li>
@@ -108,7 +106,12 @@
                                 已抢出<em style="color: red"><?php echo $item->bookedCount ?></em>份,
                                 还剩<em style="color: red"><?php echo $item->count - $item->bookedCount ?></em>份
                             </li>
-                            <li><a href="" class="btn btn-primary ">赶快抢订</a></li>
+                            <li>
+                                <a href="#" data-username="<?php echo $item->user->realname; ?>"
+                                   data-foodname="<?php echo $item->name; ?>"
+                                   data-foodid="<?php echo $item->objectId; ?>"
+                                   data-userid="<?php echo $item->user->objectId; ?>"
+                                   class="btn btn-primary book-button">赶快抢订</a></li>
                         </ul>
                     </div>
                 </div>
@@ -119,3 +122,23 @@
 
     </div>
 </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p></p><span id="myModalBoby">One fine body…</span></p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">换一个</button>
+        <button id="book-confirm" class="btn btn-primary">就她了</button>
+    </div>
+</div>
+
+<form id="bookform" class="hide" name="bookform" method="post" action="/orders/create">
+    <input type="text" name="foodId" id="foodId">
+    <input type="text" name="foodOwnerId" id="foodOwnerId">
+</form>

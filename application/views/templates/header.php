@@ -28,7 +28,7 @@
                             <a href="/posts">我要带饭</a>
                         </li>
                         <li>
-                            <a href="/book">同事手艺</a>
+                            <a href="/orders">我抢过的饭</a>
                         </li>
                     <?php
                     }

@@ -28,7 +28,14 @@ class Order_model extends CI_Model
         return $orders;
     }
 
-    public function create($food_id, $food_owner_id, $userid)
+    public function get_post_by_id($id)
+    {
+        $parse_object = new parseObject('food');
+        $post = $parse_object->get($id);
+        return $post;
+    }
+
+    public function create($food_id, $food_owner_id,$food_owner_name, $userid,$user_name)
     {
         $food['__type'] = 'Pointer';
         $food['className'] = 'food';
@@ -49,7 +56,9 @@ class Order_model extends CI_Model
         $parse_object = new parseObject('order');
         $parse_object->food = $food;
         $parse_object->foodOwner = $food_owner;
+        $parse_object->foodOwnerName = $food_owner_name;
         $parse_object->owner = $user;
+        $parse_object->ownerName = $user_name;
         $order = $parse_object->save();
         return $order;
     }

@@ -8,7 +8,8 @@
  */
 include 'base.php';
 
-class Pages extends Base{
+class Pages extends Base
+{
 
 
     public function __construct()
@@ -17,27 +18,19 @@ class Pages extends Base{
         $this->load->model('post_model');
     }
 
-    public function view($page='home')
+    public function view($page = 'home')
     {
-        if ( ! file_exists('application/views/'.$page.'.php'))
-        {
+        if (!file_exists('application/views/' . $page . '.php')) {
             // 页面不存在
             show_404();
         }
         $data['active'] = 'home';
         $this->set_session_data($data);
 
-        $posts = $this->post_model->get_posts();
-        $data['posts'] = $posts;
-
-//        foreach($posts as $post)
-//        {
-//            foreach($post as $item)
-//            {
-//                echo var_dump($posts);
-//                echo $item->name;
-//            }
-//        }
+        if ($page == 'home') {
+            $posts = $this->post_model->get_posts();
+            $data['posts'] = $posts;
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view($page, $data);

@@ -37,9 +37,16 @@ class Orders extends Base
     {
         $food_id = $this->input->post('foodId');
         $food_owner_id = $this->input->post('foodOwnerId');
+        $food_owner_name = $this->input->post('foodOwnerName');
         $user_id = $this->session->userdata('userid');
+        $user_name = $this->session->userdata('realname');
 
-        $this->order_model->create($food_id, $food_owner_id, $user_id);
-        redirect('home', 'refresh');
+        $food = $this->order_model->get_post_by_id($food_id);
+        if ($food->count <= $food->bookedCount) {
+            redirect('badluck');
+        } else {
+            $this->order_model->create($food_id, $food_owner_id,$food_owner_name, $user_id,$user_name);
+            redirect('home', 'refresh');
+        }
     }
 }

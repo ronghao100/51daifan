@@ -30,11 +30,20 @@ class Post_model extends CI_Model
         return $posts;
     }
 
+    public function get_post_by_id($id)
+    {
+        $parse_object = new parseObject('food');
+//        $parse_object->addInclude('user');
+        $post = $parse_object->get($id);
+        return $post;
+    }
+
     public function get_posts_by_user($userid)
     {
         $parse_query = $this->parse_query;
         $parse_query->wherePointer('user', '_User', $userid);
-        $parse_query->orderByDescending('createdDate');
+//        $parse_query->whereInclude('user');
+        $parse_query->orderByDescending('eatDate');
         $posts = $parse_query->find();
         return $posts;
     }

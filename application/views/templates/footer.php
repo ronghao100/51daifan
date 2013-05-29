@@ -14,6 +14,7 @@
             $('#myModalBoby').html($(this).data('foodname'));
             $('#foodId').val($(this).data('foodid'));
             $('#foodOwnerId').val($(this).data('userid'));
+            $('#foodOwnerName').val($(this).data('username'));
             $('#myModal').modal('show');
         });
 

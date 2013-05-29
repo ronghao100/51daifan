@@ -38,7 +38,7 @@ class Posts extends Base
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', '菜名', 'required');
         $this->form_validation->set_rules('describe', '描述', 'required');
-        $this->form_validation->set_rules('count', '数量', 'required');
+        $this->form_validation->set_rules('count', '数量', 'required|is_natural_no_zero');
         $this->form_validation->set_rules('eatDate', '带饭日期', 'required');
 
         if ($this->form_validation->run() == FALSE) {

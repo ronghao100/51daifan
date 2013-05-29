@@ -97,7 +97,7 @@
                     <div class="span5">
                         <ul class="unstyled">
 
-                            <li>带了<strong><?php echo $item->name ?></strong></li>
+                            <li>带<strong><?php echo $item->name ?></strong></li>
                             <li>
                                 <blockquote><?php echo $item->describe ?></blockquote>
                             </li>
@@ -107,11 +107,21 @@
                                 还剩<em style="color: red"><?php echo $item->count - $item->bookedCount ?></em>份
                             </li>
                             <li>
-                                <a href="#" data-username="<?php echo $item->user->realname; ?>"
-                                   data-foodname="<?php echo $item->name; ?>"
-                                   data-foodid="<?php echo $item->objectId; ?>"
-                                   data-userid="<?php echo $item->user->objectId; ?>"
-                                   class="btn btn-primary book-button">赶快抢订</a></li>
+                                <?php if ($item->count <= $item->bookedCount) { ?>
+                                    <a href="#" class="btn disabled">没有啦，下次早点吧</a>
+                                <?php
+                                } elseif ($logged_in) {
+
+                                    ?>
+                                    <a href="#" data-username="<?php echo $item->user->realname; ?>"
+                                       data-foodname="<?php echo $item->name; ?>"
+                                       data-foodid="<?php echo $item->objectId; ?>"
+                                       data-userid="<?php echo $item->user->objectId; ?>"
+                                       class="btn btn-primary book-button">赶快抢订</a>
+                                <?php } else { ?>
+                                    <a href="/account/login" class="btn btn-primary">赶快抢订</a>
+                                <?php } ?>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -141,4 +151,5 @@
 <form id="bookform" class="hide" name="bookform" method="post" action="/orders/create">
     <input type="text" name="foodId" id="foodId">
     <input type="text" name="foodOwnerId" id="foodOwnerId">
+    <input type="text" name="foodOwnerName" id="foodOwnerName">
 </form>

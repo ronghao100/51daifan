@@ -15,6 +15,8 @@ class Account extends Base
     {
         parent::__construct();
         $this->load->model('account_model');
+        $this->load->model('post_model');
+        $this->load->model('order_model');
     }
 
     public function register()
@@ -62,10 +64,17 @@ class Account extends Base
         } else {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
-            $user = $this->account_model->login($email,$password);
+            $user = $this->account_model->login($email, $password);
+            $post_count = $this->post_model->get_posts_count_by_user($user->objectId);
+            $post_order_count = $this->order_model->get_orders_count_by_post_user($user->objectId);
+            $order_count = $this->order_model->get_orders_count_by_user($user->objectId);
+
             $session_data = array(
                 'username' => $user->username,
                 'realname' => $user->realname,
+                'post_count' => $post_count,
+                'post_order_count' => $post_order_count,
+                'order_count' => $order_count,
                 'userid' => $user->objectId,
                 'logged_in' => TRUE
             );
@@ -97,7 +106,7 @@ class Account extends Base
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        if (!$this->account_model->login($email,$password)) {
+        if (!$this->account_model->login($email, $password)) {
             $this->form_validation->set_message('account_check', '亲，不记得账号密码了吗');
             return FALSE;
         } else {

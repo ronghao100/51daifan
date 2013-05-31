@@ -6,23 +6,16 @@
  * Time: 6:38 PM
  * To change this template use File | Settings | File Templates.
  */
-include 'parse/parse.php';
-
+require_once 'parse/parse.php';
 class Post_model extends CI_Model
 {
-    public $parse_query;
-
-    public function __construct()
-    {
-        $this->parse_query = new parseQuery('food');
-    }
 
     public function get_posts()
     {
+        $parse_query = new parseQuery('food');
         $now['__type'] = 'Date';
         $now['iso'] = date("Y-m-d\TH:i:s.Z");
 
-        $parse_query = $this->parse_query;
         $parse_query->whereGreaterThan('eatDate', $now);
         $parse_query->whereInclude('user');
         $parse_query->orderByDescending('eatDate');
@@ -33,19 +26,24 @@ class Post_model extends CI_Model
     public function get_post_by_id($id)
     {
         $parse_object = new parseObject('food');
-//        $parse_object->addInclude('user');
         $post = $parse_object->get($id);
         return $post;
     }
 
     public function get_posts_by_user($userid)
     {
-        $parse_query = $this->parse_query;
+        $parse_query = new parseQuery('food');
         $parse_query->wherePointer('user', '_User', $userid);
-//        $parse_query->whereInclude('user');
         $parse_query->orderByDescending('eatDate');
         $posts = $parse_query->find();
         return $posts;
+    }
+
+    public function get_posts_count_by_user($userid)
+    {
+        $parse_query = new parseQuery('food');
+        $parse_query->wherePointer('user', '_User', $userid);
+        return $parse_query->getCount()->count;
     }
 
     public function create($name, $describe, $count, $eatTime, $userid)

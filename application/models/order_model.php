@@ -6,26 +6,34 @@
  * Time: 9:34 PM
  * To change this template use File | Settings | File Templates.
  */
-include 'parse/parse.php';
+require_once 'parse/parse.php';
 
 class Order_model extends CI_Model
 {
-    public $parse_query;
-
-    public function __construct()
-    {
-        $this->parse_query = new parseQuery('order');
-    }
 
     public function get_orders_by_user($userid)
     {
-        $parse_query = $this->parse_query;
+        $parse_query = new parseQuery('order');
         $parse_query->wherePointer('owner', '_User', $userid);
-        $parse_query->orderByDescending('createdDate');
+        $parse_query->orderByDescending('createdAt');
         $parse_query->whereInclude('foodOwner');
         $parse_query->whereInclude('food');
         $orders = $parse_query->find();
         return $orders;
+    }
+
+    public function get_orders_count_by_user($userid)
+    {
+        $parse_query = new parseQuery('order');
+        $parse_query->wherePointer('owner', '_User', $userid);
+        return $parse_query->getCount()->count;
+    }
+
+    public function get_orders_count_by_post_user($userid)
+    {
+        $parse_query = new parseQuery('order');
+        $parse_query->wherePointer('foodOwner', '_User', $userid);
+        return $parse_query->getCount()->count;
     }
 
     public function get_post_by_id($id)

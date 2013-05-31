@@ -5,10 +5,10 @@
     </div>
     <div class="span3 well columns">
         <ul class="unstyled">
-            <li><a href="/"><strong><?php echo $realname ?></strong></a></li>
-            <li>帮助解决午饭问题</li>
-            <li>帮助人数<em style="color: green">5</em></li>
-            <li>被帮助次数<em style="color: green">5</em></li>
+            <li><a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
+            <li>带过 <a href="/posts"><?php echo $post_count ?></a></li>
+            <li>吃过 <a href="/orders"><?php echo $order_count ?></a></li>
+            <li>帮助人数 <em style="color: green"><?php echo $order_count ?></em></li>
         </ul>
     </div>
 </div>
@@ -77,12 +77,6 @@
                 <div class="well row">
                     <div class="span1">
                         <ul class="unstyled">
-                            <li><a href="/account/<?php echo $userid ?>">
-                                    <strong>
-                                        <?php echo $realname ?>
-                                    </strong>
-                                </a>
-                            </li>
                             <li>
                                 <?php
                                 $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);

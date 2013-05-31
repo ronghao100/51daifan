@@ -1,5 +1,4 @@
 <?php
-include 'parse/parse.php';
 /**
  * Created by JetBrains PhpStorm.
  * User: ronghao
@@ -7,19 +6,14 @@ include 'parse/parse.php';
  * Time: 11:00 PM
  * To change this template use File | Settings | File Templates.
  */
+require_once 'parse/parse.php';
 class Account_model extends CI_Model
 {
 
-    public $parse_query;
-
-    public function __construct()
-    {
-        $this->parse_query = new parseQuery('users');
-    }
-
     public function is_email_used($email)
     {
-        $this->parse_query->where('email', $email);
+        $parse_query = new parseQuery('users');
+        $parse_query->where('email', $email);
         $return = $this->parse_query->find();
         $user = $return->results;
         return count($user);

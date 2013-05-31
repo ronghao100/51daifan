@@ -4,6 +4,7 @@
     <title>我要带饭</title>
     <meta charset="UTF-8">
     <link href="<?php echo base_url(); ?>application/views/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>application/views/css/main.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>application/views/css/datepicker.css" rel="stylesheet">
     <style>
         body {
@@ -41,7 +42,7 @@
                     echo '<li><a href="/account/login">登录</a></li>';
                     echo '<li><a href="/account/register">注册</a></li>';
                 } else {
-                    echo '<li><a href="/account/' . $userid . '">' . $realname . '</a></li>';
+                    echo '<li><a href="/users/' . $userid . '">' . $realname . '</a></li>';
                     echo '<li><a href="/account/logout">退出</a></li>';
                 }
                 ?>

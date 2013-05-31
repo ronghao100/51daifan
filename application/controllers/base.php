@@ -12,6 +12,9 @@ class Base extends CI_Controller
     public $logged_in = FALSE;
     public $userid;
     public $realname;
+    public $post_count;
+    public $post_order_count;
+    public $order_count;
 
     public function __construct()
     {
@@ -23,6 +26,9 @@ class Base extends CI_Controller
         if ($this->logged_in) {
             $this->realname = $this->session->userdata('realname');
             $this->userid = $this->session->userdata('userid');
+            $this->post_count = $this->session->userdata('post_count');
+            $this->post_order_count = $this->session->userdata('post_order_count');
+            $this->order_count = $this->session->userdata('order_count');
         }
     }
 
@@ -31,6 +37,9 @@ class Base extends CI_Controller
         $data['logged_in'] = $this->logged_in;
         $data['userid'] = $this->userid;
         $data['realname'] = $this->realname;
+        $data['post_count'] = $this->post_count;
+        $data['post_order_count'] = $this->post_order_count;
+        $data['order_count'] = $this->order_count;
     }
 
 }

@@ -1,20 +1,6 @@
-<div class="row">
 
-    <div class="span8 page-header columns">
-        <h1>我吃过</em></h1>
-    </div>
-    <div class="span3 well columns">
-        <ul class="unstyled">
-            <li><a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
-            <li>带过 <a href="/posts"><?php echo $post_count ?></a></li>
-            <li>吃过 <a href="/orders"><?php echo $order_count ?></a></li>
-            <li>帮助人数 <em style="color: green"><?php echo $order_count ?></em></li>
-        </ul>
-    </div>
-</div>
-
-<div class="row">
-    <div class="span8">
+<div class="row" style="margin-top: 40px">
+    <div class="span8 offset1">
 
         <?php foreach ($orders as $order):
             foreach ($order as $item):

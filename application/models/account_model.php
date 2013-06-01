@@ -14,7 +14,7 @@ class Account_model extends CI_Model
     {
         $parse_query = new parseQuery('users');
         $parse_query->where('email', $email);
-        $return = $this->parse_query->find();
+        $return = $parse_query->find();
         $user = $return->results;
         return count($user);
     }

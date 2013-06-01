@@ -89,6 +89,9 @@ class Account extends Base
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('realname');
         $this->session->unset_userdata('userid');
+        $this->session->unset_userdata('post_count');
+        $this->session->unset_userdata('post_order_count');
+        $this->session->unset_userdata('order_count');
         redirect('home', 'refresh');
     }
 

@@ -1,7 +1,7 @@
 <div id="userplace clearfix">
     <div class="userinfo">
         <div class="ushead">
-            <img src="http://tx1.douguo.net/upload/photo/d/b/d/1340163726.jpg" alt="<?php echo $user->realname ?>">
+            <img src="/application/views/images/biandang.jpg" alt="<?php echo $user->realname ?>">
         </div>
         <div class="uscome">
             <div class="mb20 clearfix">

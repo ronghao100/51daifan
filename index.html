@@ -1,2 +1,75 @@
-<html><body><h1>51daifan</h1>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>我要带饭</title>
+    <meta charset="UTF-8">
+    <link href="application/views/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+
+<div class="row">
+
+    <div class="span7 hero-unit" style="margin-left: 10px">
+        <h1>中午要吃什么？</h1>
+
+        <p>不要再问我要吃什么了(=.=)</p>
+
+        <p>
+            <a href="/account/register" class="btn btn-primary btn-large">
+                <strong>立即注册</strong>
+            </a>
+        </p>
+    </div>
+
+    <div class="span4">
+        <form id="lzform" class="well" name="lzform" method="post" action="/account/login">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="email">帐号</label>
+
+                    <div class="controls">
+                        <input type="text" name="email" id="email" placeholder="邮箱">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">密码</label>
+
+                    <div class="controls">
+                        <input name="password" id="password" type="password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="checkbox control-label">
+                        <input id="remember_me" name="remember_me" type="checkbox"> 记住我
+                    </label>
+
+                    <div class="controls">
+                        <input value="登录" type="submit" class="btn btn-primary ">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+</div>
+<!-- /container -->
+<div class="footer" style="text-align: center;border-top: 1px solid #EAEAE2;
+    height: 80px;
+    margin-top: 30px;
+    width: 100%;">
+    <a href="/about" target="_blank">关于我们</a>
+</div>
+
+<script src="application/views/js/jquery.min.js"></script>
+<script src="application/views/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -4,13 +4,13 @@
     <div class="row">
 
         <div class="span7 hero-unit" style="margin-left: 10px">
-            <h1>不带便当，上神马班？</h1>
+            <h1>中午要吃什么？</h1>
 
-            <p>还在为午饭吃什么而苦恼？还在为地沟油而担心？</p>
+            <p>不要再问我要吃什么了(=.=)</p>
 
             <p>
                 <a href="/account/register" class="btn btn-primary btn-large">
-                    <strong>加入我们</strong> 注册
+                    <strong>立即注册</strong>
                 </a>
             </p>
         </div>

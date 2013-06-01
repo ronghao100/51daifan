@@ -75,54 +75,71 @@
 
         <?php foreach ($posts as $post):
             foreach ($post as $item):
-//                var_dump($post);
+//                var_dump($item);
                 ?>
-                <div class="well row">
-                    <div class="span1">
-                        <ul class="unstyled">
-                            <li><a href="/users/<?php echo $item->user->objectId ?>">
-                                    <strong>
-                                        <?php echo $item->user->realname; ?>
-                                    </strong>
-                                </a>
-                            </li>
-                            <li>
-                                <?php
-                                $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);
-                                echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
-                                ?>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="span5">
-                        <ul class="unstyled">
-
-                            <li>带<strong><?php echo $item->name ?></strong></li>
-                            <li>
-                                <blockquote><?php echo $item->describe ?></blockquote>
-                            </li>
-                            <li>
-                                总共<em style="color: green"><?php echo $item->count ?></em>份,
-                                已抢出<em style="color: red"><?php echo $item->bookedCount ?></em>份,
-                                还剩<em style="color: red"><?php echo $item->count - $item->bookedCount ?></em>份
-                            </li>
-                            <li>
-                                <?php if ($item->count <= $item->bookedCount) { ?>
-                                    <a href="#" class="btn disabled">没有啦，下次早点吧</a>
-                                <?php
-                                } elseif ($logged_in) {
-
+                <div class="span8">
+                    <div class="well row">
+                        <div class="span1">
+                            <ul class="unstyled">
+                                <li><a href="/users/<?php echo $item->user->objectId ?>">
+                                        <strong>
+                                            <?php echo $item->user->realname; ?>
+                                        </strong>
+                                    </a>
+                                </li>
+                                <li>
+                                    <?php
+                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);
+                                    echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
                                     ?>
-                                    <a href="#" data-username="<?php echo $item->user->realname; ?>"
-                                       data-foodname="<?php echo $item->name; ?>"
-                                       data-foodid="<?php echo $item->objectId; ?>"
-                                       data-userid="<?php echo $item->user->objectId; ?>"
-                                       class="btn btn-primary book-button">赶快抢订</a>
-                                <?php } else { ?>
-                                    <a href="/account/login" class="btn btn-primary">赶快抢订</a>
-                                <?php } ?>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="span6">
+                            <ul class="unstyled">
+
+                                <li>
+                                    <span>带<strong><?php echo $item->name ?></strong></span>
+                                </li>
+                                <li>
+                                <span class="offset4">
+                                        <?php if ($item->count <= $item->bookedCount) { ?>
+                                            <a href="#" class="btn disabled">亲没有啦</a>
+                                        <?php
+                                        } elseif ($logged_in) {
+
+                                            ?>
+                                            <a href="#"
+                                               data-username="<?php echo $item->user->realname; ?>"
+                                               data-foodname="<?php echo $item->name; ?>"
+                                               data-foodid="<?php echo $item->objectId; ?>"
+                                               data-userid="<?php echo $item->user->objectId; ?>"
+                                               class="btn btn-primary book-button">赶快抢订</a>
+                                        <?php } else { ?>
+                                            <a href="/account/login"
+                                               class="btn btn-primary">赶快抢订</a>
+                                        <?php } ?>
+                                </span>
+                                </li>
+                                <li>
+                                    <blockquote><?php echo $item->describe ?></blockquote>
+                                </li>
+                                <li>
+                                <span>
+                                    <?php
+                                    $createDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->createdAt);
+                                    echo $createDate['month'] . '-' . $createDate['day'] . ' ' . $createDate['hour'] . ':' . $createDate['minute'];
+                                    ?>
+                                    发布
+                                </span>
+                        <span class="offset2">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
+                        还剩(<?php echo $item->count - $item->bookedCount ?>)<i class="S_txt3">|</i>
+                        <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>" data-foodid="<?php echo $item->objectId; ?>" href="#">已抢出(<?php echo $item->bookedCount ?>)</a></span>
+                                </li>
+                                <li class='booked_persons_span' data-isGetData=false id="booked_persons_<?php echo $item->objectId; ?>">
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             <?php

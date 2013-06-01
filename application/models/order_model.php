@@ -22,6 +22,15 @@ class Order_model extends CI_Model
         return $orders;
     }
 
+    public function get_orders_by_post($postid)
+    {
+        $parse_query = new parseQuery('order');
+        $parse_query->wherePointer('food', 'food', $postid);
+        $parse_query->orderByDescending('createdAt');
+        $orders = $parse_query->find();
+        return $orders;
+    }
+
     public function get_orders_count_by_user($userid)
     {
         $parse_query = new parseQuery('order');

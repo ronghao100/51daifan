@@ -72,32 +72,45 @@
 
         <?php foreach ($posts as $post):
             foreach ($post as $item):
-
+//                var_dump($item);
                 ?>
-                <div class="well row">
-                    <div class="span1">
-                        <ul class="unstyled">
-                            <li>
-                                <?php
-                                $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);
-                                echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
-                                ?>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="span5">
-                        <ul class="unstyled">
+                <div class="span8">
+                    <div class="well row">
+                        <div class="span1">
+                            <ul class="unstyled">
+                                <li>
+                                    <?php
+                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);
+                                    echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="span6">
+                            <ul class="unstyled">
 
-                            <li>带了<strong><?php echo $item->name ?></strong></li>
-                            <li>
-                                <blockquote><?php echo $item->describe ?></blockquote>
-                            </li>
-                            <li>
-                                总共<em style="color: green"><?php echo $item->count ?></em>份,
-                                已被抢出<em style="color: red"><?php echo $item->bookedCount ?></em>份,
-                                还剩<em style="color: red"><?php echo $item->count - $item->bookedCount ?></em>份
-                            </li>
-                        </ul>
+                                <li>
+                                    <span>带了<strong><?php echo $item->name ?></strong></span>
+                                </li>
+                                <li>
+                                    <blockquote><?php echo $item->describe ?></blockquote>
+                                </li>
+                                <li>
+                                <span>
+                                    <?php
+                                    $createDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->createdAt);
+                                    echo $createDate['month'] . '-' . $createDate['day'] . ' ' . $createDate['hour'] . ':' . $createDate['minute'];
+                                    ?>
+                                    发布
+                                </span>
+                        <span class="offset2">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
+                        还剩(<?php echo $item->count - $item->bookedCount ?>)<i class="S_txt3">|</i>
+                        <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>" data-foodid="<?php echo $item->objectId; ?>" href="#">已抢出(<?php echo $item->bookedCount ?>)</a></span>
+                                </li>
+                                <li class='booked_persons_span' data-isGetData=false id="booked_persons_<?php echo $item->objectId; ?>">
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             <?php

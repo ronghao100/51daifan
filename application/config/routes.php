@@ -48,6 +48,7 @@ $route['users/(:any)'] = 'users/post/$1';
 $route['posts/create'] = 'posts/create';
 $route['posts'] = 'posts';
 $route['orders/create'] = 'orders/create';
+$route['orders/get_by_post'] = 'orders/get_by_post';
 $route['orders'] = 'orders';
 $route['default_controller'] = "pages/view";
 $route['(:any)'] = 'pages/view/$1';

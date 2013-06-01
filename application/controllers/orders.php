@@ -49,4 +49,11 @@ class Orders extends Base
             redirect('home', 'refresh');
         }
     }
+
+    public function get_by_post()
+    {
+        $food_id = $this->input->get('food_id');
+        $orders = $this->order_model->get_orders_by_post($food_id);
+        echo json_encode($orders);
+    }
 }

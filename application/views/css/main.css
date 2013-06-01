@@ -8,6 +8,48 @@
     visibility: hidden;
 }
 
+.WB_media_expand{
+    border-style: solid;
+    border-width: 1px;
+    margin: 5px 0 15px;
+    padding: 10px 20px;
+}
+
+.S_line1 {
+    border-color: #D9D9D9;
+}
+
+.WB_feed .WB_feed_datail {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    overflow: hidden;
+    padding: 0 0 11px;
+}
+.WB_face {
+    float: left;
+    position: relative;
+    width: 50px;
+}
+
+.WB_feed .WB_detail {
+    margin-left: 65px;
+}
+
+.S_line2 {
+    border-color: #E6E6E6;
+}
+
+.WB_feed .WB_func .WB_handle .S_txt3 {
+    margin: 0 6px 0 8px;
+}
+.S_txt3 {
+    color: #AEAEAE;
+}
+
+.clearfix {
+    display: block;
+}
+
 #userplace {
     background: none repeat scroll 0 0 #F4F0EC;
     box-shadow: 0 0 10px rgba(50, 50, 50, 0.1) inset;

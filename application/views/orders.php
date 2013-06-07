@@ -37,10 +37,15 @@
                     </div>
                     <div class="span5">
                         <ul class="unstyled">
-
                             <li>带的<strong><?php echo $item->name ?></strong></li>
-                            <li>
-                                <blockquote><?php echo $item->describe ?></blockquote>
+                            <li id="li-comment-<?php echo $item->objectId ?>">
+                                <?php if ($item->comment) {
+                                    echo '<blockquote>' . $item->comment . '</blockquote>';
+                                } else {
+                                    echo "<textarea id='comment-".$item->objectId."' style='width:590px' placeholder='吃过了，说两句吧'></textarea>";
+                                    echo "<p class='btn'><a data-orderid='".$item->objectId."' data-baseUrl='".base_url()."' class='comment-button' onclick='return false' href='#'><span><b></b><em>评论</em></span></a></p>";
+                                }
+                                ?>
                             </li>
                         </ul>
                     </div>

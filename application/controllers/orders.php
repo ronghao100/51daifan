@@ -45,9 +45,16 @@ class Orders extends Base
         if ($food->count <= $food->bookedCount) {
             redirect('badluck');
         } else {
-            $this->order_model->create($food_id, $food_owner_id,$food_owner_name, $user_id,$user_name);
+            $this->order_model->create($food_id, $food_owner_id, $food_owner_name, $user_id, $user_name);
             redirect('home', 'refresh');
         }
+    }
+
+    public function comment()
+    {
+        $order_id = $this->input->post('order_id');
+        $comment = $this->input->post('comment');
+        echo $this->order_model->comment($order_id, $comment);
     }
 
     public function get_by_post()

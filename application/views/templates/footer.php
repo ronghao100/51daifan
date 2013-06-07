@@ -55,6 +55,19 @@
             }
         });
 
+        $('.comment-button').bind('click', function () {
+            var order_id = $(this).data('orderid');
+            var base_url = $(this).data('baseurl');
+            var comment = $('#comment-'+order_id).val();
+            var li = $('#li-comment-'+order_id);
+            if(comment.length>0){
+                $.post(base_url+"orders/comment",{order_id:order_id,comment:comment}).done(function(data){
+                    li.html('<blockquote>'+comment+'</blockquote>');
+                })
+            }else{
+                alert('说两句吧');
+            }
+        });
     });
 
 </script>

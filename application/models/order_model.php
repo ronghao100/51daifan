@@ -66,4 +66,20 @@ class Order_model extends CI_Model
         return $order;
     }
 
+    public function comment($order_id,$comment)
+    {
+        $updatedDate = date("Y-m-d\TH:i:s.Z");
+        return $this->db->query('UPDATE orders SET comment = ? , updatedAt = ? WHERE objectId = ?',array($comment,$updatedDate,(int)$order_id));
+    }
+
+
+    public function get_comments($userid)
+    {
+        $query = $this->db->query('SELECT o.* FROM orders o WHERE o.foodOwner = ? AND comment IS NOT NULL ORDER BY updatedAt DESC',
+            array((int)$userid));
+
+        $orders = $query->result();
+        return $orders;
+    }
+
 }

@@ -19,6 +19,27 @@ class Users extends Base
         $this->load->model('order_model');
     }
 
+    public function comment($user_id)
+    {
+        $data['title'] = 'icomment';
+        $this->set_session_data($data);
+
+        $user = $this->user_model->get($user_id);
+        $data['user']=$user;
+
+        $data['post_count']=$this->post_model->get_posts_count_by_user($user_id);
+        $data['post_order_count']=$this->order_model->get_orders_count_by_post_user($user_id);
+        $data['order_count']=$this->order_model->get_orders_count_by_user($user_id);
+
+        $comments = $this->order_model->get_comments($user_id);
+        $data['comments'] = $comments;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('user_header', $data);
+        $this->load->view('user_comment', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     public function post($user_id)
     {
         $data['title'] = 'ipost';

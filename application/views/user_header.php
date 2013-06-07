@@ -14,6 +14,11 @@
             <?php if ($logged_in && $userid == $user->objectId) {
                 ?>
                 <ul class="nav nav-pills">
+                    <li <?php if ($title == 'icomment') {
+                        echo 'class="active"';
+                    } ?>>
+                        <a href="/users/comment/<?php echo $userid ?>">我收到的评价</a>
+                    </li>
                     <li <?php if ($title == 'ipost') {
                         echo 'class="active"';
                     } ?>>
@@ -25,6 +30,11 @@
                 </ul>
             <?php } else { ?>
                 <ul class="nav nav-pills">
+                    <li <?php if ($title == 'icomment') {
+                        echo 'class="active"';
+                    } ?>>
+                        <a href="/users/comment/<?php echo $user->objectId ?>">TA收到的评价</a>
+                    </li>
                     <li <?php if ($title == 'ipost') {
                         echo 'class="active"';
                     } ?>>

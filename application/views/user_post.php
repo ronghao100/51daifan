@@ -57,9 +57,7 @@
 <div class="row" style="margin-top: 40px">
     <div class="span8 offset1">
 
-        <?php foreach ($posts as $post):
-            foreach ($post as $item):
-//                var_dump($item);
+        <?php foreach ($posts as $item):
                 ?>
                 <div class="span8">
                     <div class="well row">
@@ -67,7 +65,7 @@
                             <ul class="unstyled">
                                 <li>
                                     <?php
-                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);
+                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
                                     echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
                                     ?>
                                 </li>
@@ -101,7 +99,6 @@
                     </div>
                 </div>
             <?php
-            endforeach;
         endforeach
         ?>
 

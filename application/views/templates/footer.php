@@ -41,7 +41,7 @@
             } else {
                 $.getJSON(base_url+"orders/get_by_post",{food_id:food_id}, function (data) {
                     var items = [];
-                    $.each(data['results'], function () {
+                    $.each(data, function () {
                         var owner_name=this.ownerName;
                         var owner_id=this.owner.objectId;
                         items.push("<a href="+base_url+'users/'+owner_id+"'>"+owner_name+"</a> ");

@@ -10,7 +10,7 @@
             <div class="control-group">
                 <label class="control-label" for="realname">姓名</label>
                 <div class="controls">
-                    <input type="text" name="realname" id="realname" value="<?php echo set_value('realname'); ?>" placeholder="真实姓名">
+                    <input type="text" name="realname" id="realname" value="<?php echo set_value('realname'); ?>" placeholder="RTX名">
                     <?php echo form_error('realname'); ?>
                 </div>
             </div>

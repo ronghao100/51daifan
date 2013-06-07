@@ -6,13 +6,17 @@
  * Time: 9:58 AM
  * To change this template use File | Settings | File Templates.
  */
-require_once 'parse/parse.php';
 class User_model extends CI_Model
 {
+    public function __construct()
+    {
+        $this->load->database();
+    }
+
     public function get($userid)
     {
-        $parse_object=new parseUser();
-        $user = $parse_object->get($userid);
+        $query = $this->db->get_where('user', array('objectId' => $userid));
+        $user = $query->row();
         return $user;
     }
 }

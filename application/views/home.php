@@ -73,23 +73,21 @@
 <div class="row">
     <div class="span8">
 
-        <?php foreach ($posts as $post):
-            foreach ($post as $item):
-//                var_dump($item);
+        <?php foreach ($posts as $item):
                 ?>
                 <div class="span8">
                     <div class="well row">
                         <div class="span1">
                             <ul class="unstyled">
-                                <li><a href="/users/<?php echo $item->user->objectId ?>">
+                                <li><a href="/users/<?php echo $item->user ?>">
                                         <strong>
-                                            <?php echo $item->user->realname; ?>
+                                            <?php echo $item->realName; ?>
                                         </strong>
                                     </a>
                                 </li>
                                 <li>
                                     <?php
-                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate->iso);
+                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
                                     echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
                                     ?>
                                 </li>
@@ -110,10 +108,10 @@
 
                                             ?>
                                             <a href="#"
-                                               data-username="<?php echo $item->user->realname; ?>"
+                                               data-username="<?php echo $item->realName; ?>"
                                                data-foodname="<?php echo $item->name; ?>"
                                                data-foodid="<?php echo $item->objectId; ?>"
-                                               data-userid="<?php echo $item->user->objectId; ?>"
+                                               data-userid="<?php echo $item->user; ?>"
                                                class="btn btn-primary book-button">赶快抢订</a>
                                         <?php } else { ?>
                                             <a href="/account/login"
@@ -143,7 +141,6 @@
                     </div>
                 </div>
             <?php
-            endforeach;
         endforeach
         ?>
 

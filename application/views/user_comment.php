@@ -13,18 +13,12 @@
                                 </strong>
                             </a>
                         </li>
-                        <li>
-                            <?php
-                            $updatedAt = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->updatedAt);
-                            echo $updatedAt['month'] . '-' . $updatedAt['day'] . ' ' . $updatedAt['hour'] . ':' . $updatedAt['minute'];
-                            ?>
-                        </li>
                     </ul>
                 </div>
                 <div class="span5">
                     <ul class="unstyled">
 
-                        <li>说</li>
+                        <li><?php echo $item->updatedAt;?> 说</li>
                         <li>
                             <?php echo '<blockquote>' . $item->comment . '</blockquote>'; ?>
                         </li>

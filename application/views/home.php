@@ -1,20 +1,57 @@
-<?php if (!$logged_in) {
 
-    ?>
     <div class="row">
 
-        <div class="span7 hero-unit" style="margin-left: 10px">
-            <h1>中午要吃什么？</h1>
+        <div class="span8" style="margin-left: 10px">
+<!--            <h1>中午要吃什么？</h1>-->
+<!---->
+<!--            <p>不要再问我要吃什么了(=.=)</p>-->
+<!---->
+<!--            <p>-->
+<!--                <a href="/account/register" class="btn btn-primary btn-large">-->
+<!--                    <strong>立即注册</strong>-->
+<!--                </a>-->
+<!--            </p>-->
+            <div id="myCarousel" class="carousel">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
 
-            <p>不要再问我要吃什么了(=.=)</p>
+                        <img style="height: 290px" src="application/views/images/jiujie.jpg" alt="">
+                        <div class="carousel-caption">
+                            <h4>中午要吃什么？</h4>
+                            <p>
+                                不要再问我要吃什么了(=.=)! 加入我们,立即注册!
+                            </p>
+                        </div>
 
-            <p>
-                <a href="/account/register" class="btn btn-primary btn-large">
-                    <strong>立即注册</strong>
-                </a>
-            </p>
+                    </div>
+                    <div class="item">
+                        <img style="height: 290px" src="application/views/images/chihuo.jpg" alt="">
+                        <div class="carousel-caption">
+                            <h4>想吃妹纸带的爱心便当？你邀请，我买单!</h4>
+                            <p>
+                                只要你能邀请身边的妹纸为大家带饭，我们就帮你给妹纸的饭买单一次：）
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img style="height: 290px" src="application/views/images/fanhe.jpg" alt="">
+                        <div class="carousel-caption">
+                            <h4>分享你的爱心便当，你分享，我就送！</h4>
+                            <p>
+                                还记得上学时挂满墙壁的奖状吗，致青春，只要你带饭，我们就和你一起找回青春。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
         </div>
+        <?php if (!$logged_in) {
 
+        ?>
         <div class="span4">
             <form id="lzform" class="well" name="lzform" method="post" action="/account/login">
                 <fieldset>
@@ -47,27 +84,24 @@
         </div>
     </div>
 <?php
-}
+}else{ ?>
+    <div class="span3 well">
+        <ul class="unstyled">
+            <li><a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
+            <li>带过 <a href="/posts"><?php echo $post_count ?></a></li>
+            <li>吃过 <a href="/orders"><?php echo $order_count ?></a></li>
+            <li>帮助人数 <em style="color: green"><?php echo $order_count ?></em></li>
+        </ul>
+    </div>
 
+    <?php
+    }
 ?>
 <div class="row">
 
     <div class="span8 page-header">
         <h1>现在有哪些饭可以<em style="color: red">抢</em></h1>
     </div>
-    <?php if ($logged_in) {
-        ?>
-        <div class="span3 well">
-            <ul class="unstyled">
-                <li><a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
-                <li>带过 <a href="/posts"><?php echo $post_count ?></a></li>
-                <li>吃过 <a href="/orders"><?php echo $order_count ?></a></li>
-                <li>帮助人数 <em style="color: green"><?php echo $order_count ?></em></li>
-            </ul>
-        </div>
-    <?php
-    }
-    ?>
 </div>
 
 <div class="row">
@@ -124,10 +158,7 @@
                                 </li>
                                 <li>
                                 <span>
-                                    <?php
-                                    $createDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->createdAt);
-                                    echo $createDate['month'] . '-' . $createDate['day'] . ' ' . $createDate['hour'] . ':' . $createDate['minute'];
-                                    ?>
+                                    <?php echo $item->createdAt;?>
                                     发布
                                 </span>
                         <span class="offset2">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>

@@ -10,9 +10,15 @@
 <script src="<?php echo base_url(); ?>application/views/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url(); ?>application/views/js/bootstrap-carousel.js"></script>
 <script>
 
     $(document).ready(function () {
+
+        $('.carousel').carousel({
+            interval: 2000
+        });
+
         $('.datepicker').datepicker();
 
         $('.book-button').bind('click', function () {
@@ -43,8 +49,8 @@
                     var items = [];
                     $.each(data, function () {
                         var owner_name=this.ownerName;
-                        var owner_id=this.owner.objectId;
-                        items.push("<a href="+base_url+'users/'+owner_id+"'>"+owner_name+"</a> ");
+                        var owner_id=this.owner;
+                        items.push("<a href="+base_url+'users/'+owner_id+">"+owner_name+"</a> ");
                     });
                     $('<span/>', {
                         html: items.join('')

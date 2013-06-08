@@ -16,6 +16,7 @@ class Pages extends Base
     {
         parent::__construct();
         $this->load->model('post_model');
+        $this->load->model('order_model');
     }
 
     public function view($page = 'home')
@@ -30,6 +31,9 @@ class Pages extends Base
         if ($page == 'home') {
             $posts = $this->post_model->get_posts();
             $data['posts'] = $posts;
+
+            $comments = $this->order_model->get_all_comments();
+            $data['comments'] = $comments;
         }
 
         $this->load->view('templates/header', $data);

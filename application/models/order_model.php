@@ -82,4 +82,12 @@ class Order_model extends CI_Model
         return $orders;
     }
 
+    public function get_all_comments()
+    {
+        $query = $this->db->query('SELECT o.* FROM orders o WHERE o.comment IS NOT NULL ORDER BY updatedAt DESC LIMIT 15');
+
+        $orders = $query->result();
+        return $orders;
+    }
+
 }

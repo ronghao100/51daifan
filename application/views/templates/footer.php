@@ -11,12 +11,18 @@
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap-carousel.js"></script>
+<script src="<?php echo base_url(); ?>application/views/js/jquery.vticker.js"></script>
 <script>
 
     $(document).ready(function () {
 
         $('.carousel').carousel({
-            interval: 2000
+            interval: 2500
+        });
+
+        $('.roll-data').vTicker({
+            pause: 2500,
+            showItems: 5
         });
 
         $('.datepicker').datepicker();

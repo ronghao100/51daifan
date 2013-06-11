@@ -15,7 +15,7 @@ class Order_model extends CI_Model
 
     public function get_orders_by_user($userid)
     {
-        $query = $this->db->query('SELECT o.*,p.eatDate,p.name,p.describe FROM orders o,post p WHERE o.food = p.objectId AND owner = ? ORDER BY createdAt DESC',
+        $query = $this->db->query('SELECT o.*,p.eatDate,p.name,p.describe,u.avatarThumbnail FROM orders o,post p,user u WHERE o.food = p.objectId AND o.foodOwner = u.objectId AND owner = ? ORDER BY createdAt DESC',
             array('owner' => (int)$userid));
 
         $orders = $query->result();
@@ -75,7 +75,7 @@ class Order_model extends CI_Model
 
     public function get_comments($userid)
     {
-        $query = $this->db->query('SELECT o.* FROM orders o WHERE o.foodOwner = ? AND comment IS NOT NULL ORDER BY updatedAt DESC',
+        $query = $this->db->query('SELECT o.*, u.avatarThumbnail FROM orders o ,user u WHERE o.owner = u.objectId AND o.foodOwner = ? AND comment IS NOT NULL ORDER BY updatedAt DESC',
             array((int)$userid));
 
         $orders = $query->result();

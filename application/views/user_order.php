@@ -8,23 +8,38 @@
                 <div class="span1">
                     <ul class="unstyled">
                         <li><a href="/users/<?php echo $item->foodOwner ?>">
-                                <strong>
-                                    <?php echo $item->foodOwnerName ?>
-                                </strong>
+                                <img style="height: 50px;width: 50px;"
+                                     src="<?php
+                                     if ($item->avatarThumbnail) {
+                                         echo $item->avatarThumbnail;
+                                     } else {
+                                         echo base_url().'application/views/images/medium_avatar.png';
+                                     }
+                                     ?>" alt="<?php echo $item->foodOwnerName ?>">
                             </a>
-                        </li>
-                        <li>
-                            <?php
-                            $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
-                            echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
-                            ?>
                         </li>
                     </ul>
                 </div>
                 <div class="span5">
                     <ul class="unstyled">
-
-                        <li>带的<strong><?php echo $item->name ?></strong></li>
+                        <li>
+                            <span>
+                                <a href="/users/<?php echo $item->foodOwner ?>">
+                                    <strong>
+                                        <?php echo $item->foodOwnerName ?>
+                                    </strong>
+                                </a>
+                            </span>
+                            <span>
+                                <?php
+                                $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
+                                echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
+                                ?>
+                            </span>
+                            <span>
+                             带的 <strong><?php echo $item->name ?></strong>
+                            </span>
+                        </li>
                         <li id="li-comment-<?php echo $item->objectId ?>">
                             <?php if ($logged_in && $userid == $user->objectId) {
                                 if ($item->comment) {

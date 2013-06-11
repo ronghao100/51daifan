@@ -12,6 +12,8 @@ class Base extends CI_Controller
     public $logged_in = FALSE;
     public $userid;
     public $realname;
+    public $avatar;
+    public $avatar_thumbnail;
     public $post_count;
     public $post_order_count;
     public $order_count;
@@ -29,6 +31,8 @@ class Base extends CI_Controller
             $this->post_count = $this->session->userdata('post_count');
             $this->post_order_count = $this->session->userdata('post_order_count');
             $this->order_count = $this->session->userdata('order_count');
+            $this->avatar = $this->session->userdata('avatar');
+            $this->avatar_thumbnail = $this->session->userdata('avatar_thumbnail');
         }
     }
 
@@ -40,6 +44,8 @@ class Base extends CI_Controller
         $data['post_count'] = $this->post_count;
         $data['post_order_count'] = $this->post_order_count;
         $data['order_count'] = $this->order_count;
+        $data['avatar'] = $this->avatar;
+        $data['avatar_thumbnail'] = $this->avatar_thumbnail;
     }
 
 }

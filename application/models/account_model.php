@@ -35,13 +35,19 @@ class Account_model extends CI_Model
 
     public function login($email, $password)
     {
-        $query = $this->db->get_where('user', array('email' => $email,'password' => md5($password)));
+        $query = $this->db->get_where('user', array('email' => $email, 'password' => md5($password)));
         $user = $query->row();
-        if(count($user)==0){
+        if (count($user) == 0) {
             return FALSE;
-        }else{
+        } else {
             return $user;
         }
+    }
+
+    public function set_avatar($userid, $file_name, $thumb_name)
+    {
+        $updatedDate = date("Y-m-d\TH:i:s.Z");
+        return $this->db->query('UPDATE user SET avatar = ? , avatarThumbnail=? , updatedAt = ? WHERE objectId = ?', array($file_name, $thumb_name, $updatedDate, (int)$userid));
     }
 
 

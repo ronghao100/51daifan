@@ -1,11 +1,25 @@
 <div id="userplace clearfix">
     <div class="userinfo">
         <div class="ushead">
-            <img src="/application/views/images/biandang.jpg" alt="<?php echo $user->realname ?>">
+            <div style="padding: 2px;border: 1px solid #E8E8E8;height: 140px;width: 140px;">
+                <img style="height: 140px;width: 140px;" src="<?php
+                if ($user->avatar) {
+                    echo $user->avatar;
+                } else {
+                    echo base_url().'application/views/images/large_avatar.png';
+                }
+                ?>" alt="<?php echo $user->realname ?>">
+            </div>
+            <div style="text-align: center">
+                <?php if ($logged_in && $userid == $user->objectId) {
+                    echo '<a href="/account/avatar">更新头像</a>';
+                } ?>
+            </div>
         </div>
         <div class="uscome">
             <div class="mb20 clearfix">
                 <h1 class="mb3"><?php echo $user->realname ?></h1>
+
                 <div class="clearfix">
                     <span class="fcc">北京 腾讯</span>
                 </div>
@@ -48,9 +62,9 @@
         </div>
         <div class="numifo">
             <ul class="unstyled">
-                <li><a href="#"><?php echo $post_count ?></a><br />带过</li>
-                <li><a href="#"><?php echo $order_count ?></a><br />吃过</li>
-                <li><a href="#"><?php echo $post_order_count ?></a><br />帮助人数</li>
+                <li><a href="#"><?php echo $post_count ?></a><br/>带过</li>
+                <li><a href="#"><?php echo $order_count ?></a><br/>吃过</li>
+                <li><a href="#"><?php echo $post_order_count ?></a><br/>帮助人数</li>
             </ul>
         </div>
     </div>

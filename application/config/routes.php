@@ -40,6 +40,8 @@
 $route['account/register'] = 'account/register';
 $route['account/login'] = 'account/login';
 $route['account/logout'] = 'account/logout';
+$route['account/avatar'] = 'account/avatar';
+$route['account/upload_avatar'] = 'account/upload_avatar';
 $route['account'] = 'account';
 $route['users'] = "users";
 $route['users/order/(:any)'] = 'users/order/$1';

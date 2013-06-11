@@ -84,4 +84,16 @@ class Users extends Base
 
     }
 
+    public function edit_introduce()
+    {
+        $intro = $this->input->post('introduce');
+        echo $this->user_model->edit_introduce($this->userid, $intro);
+    }
+
+    public function edit_address()
+    {
+        $address = $this->input->post('address');
+        echo $this->user_model->edit_address($this->userid, $address);
+    }
+
 }

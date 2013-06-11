@@ -16,7 +16,7 @@ class Post_model extends CI_Model
 
     public function get_posts()
     {
-        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail FROM post p,user u WHERE p.user = u.objectId ORDER BY eatDate DESC');
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId ORDER BY eatDate DESC');
         $posts = $query->result();
         return $posts;
     }

@@ -71,7 +71,7 @@
                                                  if ($item->avatarThumbnail) {
                                                      echo $item->avatarThumbnail;
                                                  } else {
-                                                     echo base_url().'application/views/images/medium_avatar.png';
+                                                     echo base_url() . 'application/views/images/medium_avatar.png';
                                                  }
                                                  ?>" alt="<?php echo $item->realName ?>">
                                         </a>
@@ -96,7 +96,7 @@
                                             </span>
                                         <span>带 <strong><?php echo $item->name ?></strong></span>
 
-                                <span class="offset4">
+                                <span class="offset4" style="float:right ">
                                         <?php if ($item->count <= $item->bookedCount) { ?>
                                             <a href="#" class="btn disabled">亲没有啦</a>
                                         <?php
@@ -123,7 +123,8 @@
                                     <?php echo $item->createdAt; ?>
                                     发布
                                 </span>
-                        <span class="offset5">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
+                                        <span><i class="icon-map-marker"></i><?php echo $item->address; ?></span>
+                        <span class="offset2" style="float:right ">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
                         还剩(<?php echo $item->count - $item->bookedCount ?>)<i class="S_txt3">|</i>
                         <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>"
                            data-foodid="<?php echo $item->objectId; ?>" href="#">已抢出(<?php echo $item->bookedCount ?>
@@ -186,12 +187,30 @@
         } else {
             ?>
             <div class="span12 well">
+                <span class="span4">
+                    <a href="/users/<?php echo $userid ?>">
+                        <img style="height: 120px;width: 120px;" src="<?php
+                        if ($avatar) {
+                            echo $avatar;
+                        } else {
+                            echo base_url() . 'application/views/images/large_avatar.png';
+                        }
+                        ?>" alt="<?php echo $realname ?>">
+                    </a>
+                </span>
+                <span class="span8">
                 <ul class="unstyled">
-                    <li><a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
-                    <li>带过 <a href="/posts"><?php echo $post_count ?></a></li>
-                    <li>吃过 <a href="/orders"><?php echo $order_count ?></a></li>
-                    <li>帮助人数 <em style="color: green"><?php echo $order_count ?></em></li>
+                    <li style="padding-bottom: 20px">
+                        <a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
+                    <li style="float: left;width: 61px;text-align: center">带过 <a
+                            href="/posts"><?php echo $post_count ?></a></li>
+                    <li style="float: left;width: 61px;text-align: center">吃过 <a
+                            href="/orders"><?php echo $order_count ?></a></li>
+                    <li style="float: left;width: 70px;text-align: center">帮助人数 <a
+                            href="#"><?php echo $order_count ?></a></li>
+                    <li style="padding-top: 40px"><a class="btn btn-primary" href="/posts">我要带饭</a></li>
                 </ul>
+                    </span>
             </div>
 
         <?php

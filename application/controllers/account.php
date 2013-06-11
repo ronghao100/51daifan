@@ -18,13 +18,12 @@ class Account extends Base
     public function __construct()
     {
         parent::__construct();
-        if($this->is_sae)
-        {
-            $this->upload_path='avatar';
-            $this->thumbnail_source_image_path='avatar/';
-        }else{
-            $this->upload_path='./uploads/';
-            $this->thumbnail_source_image_path=$_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+        if ($this->is_sae) {
+            $this->upload_path = 'avatar';
+            $this->thumbnail_source_image_path = 'avatar/';
+        } else {
+            $this->upload_path = './uploads/';
+            $this->thumbnail_source_image_path = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
         }
         $this->load->model('account_model');
         $this->load->model('post_model');
@@ -147,22 +146,21 @@ class Account extends Base
             $this->load->view('templates/footer');
         } else {
             $upload_data = $this->upload->data();
-            $image_url='http://'.$_SERVER['SERVER_NAME'].'/uploads/'.$upload_data['file_name'];
+            $image_url = 'http://' . $_SERVER['SERVER_NAME'] . '/uploads/' . $upload_data['file_name'];
             $image_thumbnail = $this->image_thumbnail($upload_data);
-            $thumb_url='http://'.$_SERVER['SERVER_NAME'].'/uploads/'. $image_thumbnail;
+            $thumb_url = 'http://' . $_SERVER['SERVER_NAME'] . '/uploads/' . $image_thumbnail;
 
-            if($this->is_sae){
-                $image_url=$upload_data['file_url'];
+            if ($this->is_sae) {
+                $image_url = $upload_data['file_url'];
                 $s = new SaeStorage();
-//                $s->delete($this->upload_path,$this->avatar);
-                $thumb_url=$s->getUrl($this->upload_path, $image_thumbnail);
-            }else{
-//                unlink($this->upload_path . $this->avatar);
+                $thumb_url = $s->getUrl($this->upload_path, $image_thumbnail);
             }
+
+            $this->delete_pre_avatar($this->avatar);
 
             $data['avatar'] = $image_url;
             $data['avatar_thumbnail'] = $thumb_url;
-            $this->account_model->set_avatar($this->userid, $image_url,$thumb_url);
+            $this->account_model->set_avatar($this->userid, $image_url, $thumb_url);
             $this->session->set_userdata('avatar', $image_url);
             $this->session->set_userdata('avatar_thumbnail', $thumb_url);
 
@@ -185,12 +183,7 @@ class Account extends Base
         if (!$this->image_lib->resize()) {
             echo $this->image_lib->display_errors();
         } else {
-//            if($this->is_sae){
-////                $s = new SaeStorage();
-////                $s->delete($this->upload_path,$this->avatar_thumbnail);
-//            }else{
-////                unlink($this->upload_path . $this->avatar_thumbnail);
-//            }
+            $this->delete_pre_avatar($this->avatar_thumbnail);
         }
         return $thumb_name;
     }
@@ -215,6 +208,19 @@ class Account extends Base
             return FALSE;
         } else {
             return TRUE;
+        }
+    }
+
+    public function delete_pre_avatar($avatar_url)
+    {
+        if ($avatar_url) {
+            $per_image_array = explode('/', $avatar_url);
+            if ($this->is_sae) {
+                $s = new SaeStorage();
+                $s->delete($this->upload_path, $per_image_array[count($per_image_array) - 1]);
+            } else {
+                unlink($this->upload_path . $per_image_array[count($per_image_array) - 1]);
+            }
         }
     }
 }

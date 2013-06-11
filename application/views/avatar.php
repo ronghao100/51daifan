@@ -43,7 +43,7 @@
                     if ($avatar_thumbnail) {
                         echo $avatar_thumbnail;
                     } else {
-                        echo 'application/views/images/medium_avatar.png';
+                        echo base_url().'application/views/images/medium_avatar.png';
                     }
                     ?>">
                 </div>

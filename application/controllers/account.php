@@ -216,8 +216,9 @@ class Account extends Base
         if ($avatar_url) {
             $per_image_array = explode('/', $avatar_url);
             if ($this->is_sae) {
-                $s = new SaeStorage();
-                $s->delete($this->upload_path, $per_image_array[count($per_image_array) - 1]);
+                //no more user can set avatar frequently, so cancel delete function for effective
+//                $s = new SaeStorage();
+//                $s->delete($this->upload_path, $per_image_array[count($per_image_array) - 1]);
             } else {
                 unlink($this->upload_path . $per_image_array[count($per_image_array) - 1]);
             }

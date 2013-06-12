@@ -12,6 +12,7 @@
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url(); ?>application/views/js/bootstrap-carousel.js"></script>
 <script src="<?php echo base_url(); ?>application/views/js/jquery.vticker.js"></script>
+<script src="<?php echo base_url(); ?>application/views/js/bootstrap-tooltip.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -24,6 +25,10 @@
             pause: 2500,
             showItems: 5
         });
+
+        $('#i-post').tooltip({placement:'bottom'});
+        $('#i-comment').tooltip({placement:'bottom'});
+        $('#i-setting').tooltip({placement:'bottom'});
 
         $('.datepicker').datepicker();
 

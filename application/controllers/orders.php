@@ -17,22 +17,6 @@ class Orders extends Base
         $this->load->model('order_model');
     }
 
-    public function index()
-    {
-        if (!$this->logged_in) {
-            redirect('/account/login', 'refresh');
-        }
-
-        $data['active'] = 'orders';
-        $this->set_session_data($data);
-        $orders = $this->order_model->get_orders_by_user($this->userid);
-        $data['orders'] = $orders;
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('orders', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
     public function create()
     {
         $food_id = $this->input->post('foodId');

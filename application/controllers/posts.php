@@ -58,7 +58,7 @@ class Posts extends Base
             $eatTime=mktime(13,0,0,$eatDate['month'],$eatDate['day'],$eatDate['year']);
 
             $this->post_model->create($name, $describe,$count, $eatTime,$this->userid);
-            redirect('posts', 'refresh');
+            redirect('home', 'refresh');
         }
     }
 }

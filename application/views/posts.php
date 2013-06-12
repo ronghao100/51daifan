@@ -109,13 +109,31 @@
 
     <div class="span4">
         <div class="row-fluid">
-            <div class="span12 well columns">
+            <div class="span12 well" style="height: 200px;">
+                <span class="span4">
+                    <a href="/users/<?php echo $userid ?>">
+                        <img style="height: 120px;width: 120px;" src="<?php
+                        if ($avatar) {
+                            echo $avatar;
+                        } else {
+                            echo base_url() . 'application/views/images/large_avatar.png';
+                        }
+                        ?>" alt="<?php echo $realname ?>">
+                    </a>
+                </span>
+                <span class="span8">
                 <ul class="unstyled">
-                    <li><a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
-                    <li>带过 <a href="/posts"><?php echo $post_count ?></a></li>
-                    <li>吃过 <a href="/orders"><?php echo $order_count ?></a></li>
-                    <li>帮助人数 <em style="color: green"><?php echo $order_count ?></em></li>
+                    <li style="padding-bottom: 20px">
+                        <a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
+                    <li style="float: left;width: 61px;text-align: center">带过 <a
+                            href="/users/post/<?php echo $userid ?>"><?php echo $post_count ?></a></li>
+                    <li style="float: left;width: 61px;text-align: center">吃过 <a
+                            href="/users/order/<?php echo $userid ?>"><?php echo $order_count ?></a></li>
+                    <li style="float: left;width: 70px;text-align: center">帮助人数 <a
+                            href="#"><?php echo $order_count ?></a></li>
+                    <li style="padding-top: 40px"><a class="btn btn-primary" href="/users/post/<?php echo $userid ?>">我要带饭</a></li>
                 </ul>
+                    </span>
             </div>
         </div>
     </div>

@@ -37,6 +37,7 @@
             </div>
             <div class="form-actions">
                 <input value="注册" type="submit" class="btn btn-primary ">
+                <span>已有账号，<a class="" href="/account/login">从这里登录>></a></span>
             </div>
         </fieldset>
     </form>

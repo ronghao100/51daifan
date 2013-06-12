@@ -23,17 +23,6 @@
                     <li>
                         <a href="/index.php">首页</a>
                     </li>
-                    <?php if ($logged_in) {
-                        ?>
-                        <li>
-                            <a href="/posts">我要带饭</a>
-                        </li>
-                        <li>
-                            <a href="/orders">我抢过的饭</a>
-                        </li>
-                    <?php
-                    }
-                    ?>
                 </ul>
             </div>
 
@@ -43,7 +32,16 @@
                     echo '<li><a href="/account/register">注册</a></li>';
                 } else {
                     echo '<li><a href="/users/' . $userid . '">' . $realname . '</a></li>';
+                    echo '<li><a id="i-post" title="我要带饭" href="/users/post/' . $userid . '"><i class="icon-edit"></i></a></li>';
+                    echo '<li><a id="i-comment" title="我要评论" href="/users/order/' . $userid . '"><i class="icon-comment"></i></a></li>';
+                    echo '<li class="dropdown">';
+                    echo '<a id="i-setting" title="我的设置" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-cog"></i><b class="caret"></b></a>';
+                    echo '<ul class="dropdown-menu">';
+                    echo '<li><a href="/account/avatar">设置头像</a></li>';
+                    echo '<li class="divider"></li>';
                     echo '<li><a href="/account/logout">退出</a></li>';
+                    echo '</ul>';
+                    echo '</li>';
                 }
                 ?>
             </ul>
@@ -51,6 +49,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div class="container-fluid">
 

@@ -35,6 +35,7 @@
         </div>
         <div class="form-actions">
             <input value="登录" type="submit" class="btn btn-primary ">
+            <span>没有账号，<a class="" href="/account/register">从这里注册>></a></span>
         </div>
     </fieldset>
     </form>

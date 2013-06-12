@@ -7,38 +7,17 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <div class="active item">
-
-                        <img style="height: 290px" src="application/views/images/jiujie.jpg" alt="">
+                        <img style="height: 200px" src="application/views/images/fanhe.jpg" alt="">
 
                         <div class="carousel-caption">
-                            <h4>中午要吃什么？</h4>
-
-                            <p>
-                                不要再问我要吃什么了(=.=)! 加入我们,立即注册!
-                            </p>
+                            <h4>加入我们，和大家一起分享我们的爱心便当。</h4>
                         </div>
-
                     </div>
                     <div class="item">
-                        <img style="height: 290px" src="application/views/images/chihuo.jpg" alt="">
+                        <img style="height: 200px" src="application/views/images/chihuo.jpg" alt="">
 
                         <div class="carousel-caption">
                             <h4>想吃妹纸带的爱心便当？你邀请，我买单!</h4>
-
-                            <p>
-                                只要你能邀请身边的妹纸为大家带饭，我们就帮你给妹纸的饭买单一次：）
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img style="height: 290px" src="application/views/images/fanhe.jpg" alt="">
-
-                        <div class="carousel-caption">
-                            <h4>分享你的爱心便当，你分享，我就送！</h4>
-
-                            <p>
-                                还记得上学时挂满墙壁的奖状吗，致青春，只要你带饭，我们就和你一起找回青春。
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -50,8 +29,8 @@
     </div>
 
     <div class="row-fluid">
-        <div class="span12 page-header">
-            <h1>现在有哪些饭可以<em style="color: red">抢</em></h1>
+        <div class="span12">
+            <strong>谁在分享自己的爱心便当</strong>
         </div>
     </div>
 
@@ -154,39 +133,17 @@
 
             ?>
             <div class="span12">
-                <form id="lzform" class="well" name="lzform" method="post" action="/account/login">
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="email">帐号</label>
-
-                            <div class="controls">
-                                <input type="text" name="email" id="email" placeholder="邮箱">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="password">密码</label>
-
-                            <div class="controls">
-                                <input name="password" id="password" type="password">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="checkbox control-label">
-                                <input id="remember_me" name="remember_me" type="checkbox"> 记住我
-                            </label>
-
-                            <div class="controls">
-                                <input value="登录" type="submit" class="btn btn-primary ">
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-
+                <ul class="unstyled well" style="text-align: center;">
+                    <li style="padding-bottom: 10px"><h2>中午要吃什么？</h2></li>
+                    <li style="padding-bottom: 10px">不要再问我要吃什么了(=.=)! </li>
+                    <li style="padding-bottom: 10px"><a class="btn btn-primary" href="/account/register"><strong>立即注册</strong></a></li>
+                    <li>已有账号，<a class="" href="/account/login">从这里登录>></a></li>
+                </ul>
             </div>
         <?php
         } else {
             ?>
-            <div class="span12 well">
+            <div class="span12 well" style="height: 200px;">
                 <span class="span4">
                     <a href="/users/<?php echo $userid ?>">
                         <img style="height: 120px;width: 120px;" src="<?php
@@ -203,12 +160,12 @@
                     <li style="padding-bottom: 20px">
                         <a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
                     <li style="float: left;width: 61px;text-align: center">带过 <a
-                            href="/posts"><?php echo $post_count ?></a></li>
+                            href="/users/post/<?php echo $userid ?>"><?php echo $post_count ?></a></li>
                     <li style="float: left;width: 61px;text-align: center">吃过 <a
-                            href="/orders"><?php echo $order_count ?></a></li>
+                            href="/users/order/<?php echo $userid ?>"><?php echo $order_count ?></a></li>
                     <li style="float: left;width: 70px;text-align: center">帮助人数 <a
                             href="#"><?php echo $order_count ?></a></li>
-                    <li style="padding-top: 40px"><a class="btn btn-primary" href="/posts">我要带饭</a></li>
+                    <li style="padding-top: 40px"><a class="btn btn-primary" href="/users/post/<?php echo $userid ?>">我要带饭</a></li>
                 </ul>
                     </span>
             </div>
@@ -216,6 +173,12 @@
         <?php
         }
         ?>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <strong>谁在说</strong>
+        </div>
     </div>
 
     <div class="row-fluid">

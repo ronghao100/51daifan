@@ -7,6 +7,13 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <div class="active item">
+                        <img style="height: 200px" src="application/views/images/amyren.png" alt="">
+
+                        <div class="carousel-caption">
+                            <a href="/users/post/27"><h4>logo诞生，我们的美女设计师amyren。</h4></a>
+                        </div>
+                    </div>
+                    <div class="item">
                         <img style="height: 200px" src="application/views/images/fanhe.jpg" alt="">
 
                         <div class="carousel-caption">
@@ -94,7 +101,7 @@
                                         <?php } ?>
                                 </span>
                                     </li>
-                                    <li>
+                                    <li style="padding-top: 10px">
                                         <blockquote><?php echo $item->describe ?></blockquote>
                                     </li>
                                     <li>

@@ -16,7 +16,7 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="/index.php">51daifan</a>
+            <a class="brand" href="/index.php"><img src="<?php echo base_url(); ?>application/views/images/logo.png"></a>
 
             <div class="nav-collapse">
                 <ul class="nav">

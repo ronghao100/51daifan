@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <div class="span2 offset1">
+    <div class="span2 offset2">
         <ul class="unstyled">
             <li style="padding: 2px;border: 1px solid #E8E8E8;height: 140px;width: 140px;">
                 <img style="height: 140px;width: 140px;" src="<?php
@@ -17,7 +17,7 @@
             </li>
         </ul>
     </div>
-    <div class="span5">
+    <div class="span4">
         <div>
             <div>
                 <h3><?php echo $user->realname ?></h3>
@@ -57,8 +57,7 @@
                 </li>
                 <li style="float: left;width: 61px;text-align: center"><a href="#"><?php echo $order_count ?></a><br/>吃过
                 </li>
-                <li style="float: left;width: 61px;text-align: center"><a
-                        href="#"><?php echo $post_order_count ?></a><br/>帮助人数
+                <li style="float: left;width: 61px;text-align: center"><a href="#"><?php echo $recipe_count ?></a><br/>日记
                 </li>
             </ul>
         </div>
@@ -66,7 +65,7 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span5 offset3">
+    <div class="span5 offset4">
         <?php if ($logged_in && $userid == $user->objectId) {
             ?>
             <ul class="nav nav-pills">
@@ -75,6 +74,9 @@
                 } ?>>
                     <a href="/users/post/<?php echo $userid ?>">我带过的饭</a>
                 </li>
+                <li <?php if ($title == 'irecipe') {
+                    echo 'class="active"';
+                } ?>><a href="/users/recipe/<?php echo $userid ?>">我家美食</a></li>
                 <li <?php if ($title == 'iorder') {
                     echo 'class="active"';
                 } ?>><a href="/users/order/<?php echo $userid ?>">我吃过的饭</a></li>
@@ -91,6 +93,9 @@
                 } ?>>
                     <a href="/users/post/<?php echo $user->objectId ?>">TA带过的饭</a>
                 </li>
+                <li <?php if ($title == 'irecipe') {
+                    echo 'class="active"';
+                } ?>><a href="/users/recipe/<?php echo $user->objectId ?>">TA家美食</a></li>
                 <li <?php if ($title == 'iorder') {
                     echo 'class="active"';
                 } ?>><a href="/users/order/<?php echo $user->objectId ?>">TA吃过的饭</a></li>

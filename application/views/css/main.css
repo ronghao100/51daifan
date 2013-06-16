@@ -49,3 +49,58 @@
 .clearfix {
     display: block;
 }
+
+.prtp{
+    float: left;
+    height: 140px;
+    margin: 0 25px 25px 0;
+    width: 140px;
+}
+
+.piic{
+    height: 140px;
+    position: relative;
+    width: 140px;
+}
+
+.dgprogressBar {
+    background: url("../images/swfupload/prog.gif") repeat-x scroll 0 0 transparent;
+    height: 12px;
+    width: 0;
+}
+
+.obclose {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.btnclrj {
+    cursor: pointer;
+    display: inline-block;
+    height: 21px;
+    vertical-align: middle;
+    width: 21px;
+}
+
+.recipes_img {
+    /*float: left;*/
+    height: 140px;
+    margin: 0 10px 10px 0;
+    width: 140px;
+}
+.ydtime {
+    background: none repeat scroll 0 0 #333333;
+    color: #FFFFFF;
+    float: left;
+    height: 48px;
+    text-align: center;
+    width: 48px;
+}
+.dblok {
+    display: block;
+}
+.tdate {
+    font-size: 24px;
+    font-weight: bold;
+}

@@ -11,10 +11,6 @@ include 'base.php';
 class Account extends Base
 {
 
-    public $upload_path;
-    public $thumbnail_source_image_path;
-    public $is_sae = FALSE;
-
     public function __construct()
     {
         parent::__construct();
@@ -27,6 +23,7 @@ class Account extends Base
         }
         $this->load->model('account_model');
         $this->load->model('post_model');
+        $this->load->model('recipe_model');
         $this->load->model('order_model');
     }
 
@@ -55,6 +52,7 @@ class Account extends Base
                 'userid' => $user->objectId,
                 'post_count' => 0,
                 'post_order_count' => 0,
+                'recipe_count' => 0,
                 'order_count' => 0,
                 'avatar' => '',
                 'avatar_thumbnail' => '',
@@ -83,6 +81,7 @@ class Account extends Base
             $user = $this->account_model->login($email, $password);
             $post_count = $this->post_model->get_posts_count_by_user($user->objectId);
             $post_order_count = $this->order_model->get_orders_count_by_post_user($user->objectId);
+            $recipe_count = $this->recipe_model->get_recipes_count_by_user($user->objectId);
             $order_count = $this->order_model->get_orders_count_by_user($user->objectId);
 
             $session_data = array(
@@ -90,6 +89,7 @@ class Account extends Base
                 'realname' => $user->realname,
                 'post_count' => $post_count,
                 'post_order_count' => $post_order_count,
+                'recipe_count' => $recipe_count,
                 'order_count' => $order_count,
                 'userid' => $user->objectId,
                 'avatar' => $user->avatar,
@@ -109,6 +109,7 @@ class Account extends Base
         $this->session->unset_userdata('userid');
         $this->session->unset_userdata('post_count');
         $this->session->unset_userdata('post_order_count');
+        $this->session->unset_userdata('recipe_count');
         $this->session->unset_userdata('order_count');
         $this->session->unset_userdata('avatar');
         $this->session->unset_userdata('avatar_thumbnail');
@@ -131,13 +132,8 @@ class Account extends Base
         $data['error'] = '';
         $this->set_session_data($data);
 
-        $config['upload_path'] = $this->upload_path;
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = '2048';
-        $config['max_width'] = '2048';
-        $config['max_height'] = '1600';
-        $config['encrypt_name'] = TRUE;
-        $this->load->library('upload', $config);
+        $this->upload_config['upload_path'] = $this->upload_path;
+        $this->load->library('upload', $this->upload_config);
 
         if (!$this->upload->do_upload()) {
             $data['error'] = $this->upload->display_errors();
@@ -156,7 +152,8 @@ class Account extends Base
                 $thumb_url = $s->getUrl($this->upload_path, $image_thumbnail);
             }
 
-            $this->delete_pre_avatar($this->avatar);
+            $this->delete_image($this->avatar);
+            $this->delete_image($this->avatar_thumbnail);
 
             $data['avatar'] = $image_url;
             $data['avatar_thumbnail'] = $thumb_url;
@@ -169,25 +166,6 @@ class Account extends Base
             $this->load->view('templates/footer');
         }
     }
-
-    public function image_thumbnail($upload_image)
-    {
-        $thumb_name = $upload_image['raw_name'] . '_thumb' . $upload_image['file_ext'];
-
-        $thumbnail_config['source_image'] = $this->thumbnail_source_image_path . $upload_image['file_name'];
-        $thumbnail_config['new_image'] = $this->thumbnail_source_image_path . $thumb_name;
-        $thumbnail_config['maintain_ratio'] = FALSE;
-        $thumbnail_config['width'] = 48;
-        $thumbnail_config['height'] = 48;
-        $this->load->library('image_lib', $thumbnail_config);
-        if (!$this->image_lib->resize()) {
-            echo $this->image_lib->display_errors();
-        } else {
-            $this->delete_pre_avatar($this->avatar_thumbnail);
-        }
-        return $thumb_name;
-    }
-
 
     public function email_check($str)
     {
@@ -211,17 +189,5 @@ class Account extends Base
         }
     }
 
-    public function delete_pre_avatar($avatar_url)
-    {
-        if ($avatar_url) {
-            $per_image_array = explode('/', $avatar_url);
-            if ($this->is_sae) {
-                //no more user can set avatar frequently, so cancel delete function for effective
-//                $s = new SaeStorage();
-//                $s->delete($this->upload_path, $per_image_array[count($per_image_array) - 1]);
-            } else {
-                unlink($this->upload_path . $per_image_array[count($per_image_array) - 1]);
-            }
-        }
-    }
+
 }

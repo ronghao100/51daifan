@@ -1,6 +1,6 @@
 <div class="row-fluid">
 
-<div class="span8">
+<div class="span6 offset2">
     <div class="row-fluid">
         <div class="span12">
             <div id="myCarousel" class="carousel">
@@ -42,14 +42,14 @@
     </div>
 
     <div class="row-fluid">
-        <div class="span12" style="margin-left: 20px">
+        <div class="span12">
 
             <?php foreach ($posts as $item):
                 ?>
                 <div class="row-fluid">
                     <div class="span12">
-                        <div class="well row">
-                            <div class="span1">
+                        <div class="row-fluid" style="border-bottom: 1px solid #EAEAE2;margin-bottom: 10px">
+                            <div class="span1" style="width:50px">
                                 <ul class="unstyled">
                                     <li><a href="/users/<?php echo $item->user ?>">
                                             <img style="height: 50px;width: 50px;"
@@ -64,7 +64,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="span11">
+                            <div class="span10">
                                 <ul class="unstyled">
                                     <li>
                                             <span>
@@ -74,35 +74,33 @@
                                                     </strong>
                                                 </a>
                                             </span>
-                                            <span>
+                                             <span style="float:right ">
+                                                <?php if ($item->count <= $item->bookedCount) { ?>
+                                                    <a href="#" class="btn disabled">亲没有啦</a>
                                                 <?php
-                                                $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
-                                                echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
-                                                ?>
+                                                } elseif ($logged_in) {
+
+                                                    ?>
+                                                    <a href="#"
+                                                       data-username="<?php echo $item->realName; ?>"
+                                                       data-foodname="<?php echo $item->name; ?>"
+                                                       data-foodid="<?php echo $item->objectId; ?>"
+                                                       data-userid="<?php echo $item->user; ?>"
+                                                       class="btn btn-primary book-button">赶快抢订</a>
+                                                <?php } else { ?>
+                                                    <a href="/account/login"
+                                                       class="btn btn-primary">赶快抢订</a>
+                                                <?php } ?>
                                             </span>
-                                        <span>带 <strong><?php echo $item->name ?></strong></span>
-
-                                <span class="offset4" style="float:right ">
-                                        <?php if ($item->count <= $item->bookedCount) { ?>
-                                            <a href="#" class="btn disabled">亲没有啦</a>
-                                        <?php
-                                        } elseif ($logged_in) {
-
-                                            ?>
-                                            <a href="#"
-                                               data-username="<?php echo $item->realName; ?>"
-                                               data-foodname="<?php echo $item->name; ?>"
-                                               data-foodid="<?php echo $item->objectId; ?>"
-                                               data-userid="<?php echo $item->user; ?>"
-                                               class="btn btn-primary book-button">赶快抢订</a>
-                                        <?php } else { ?>
-                                            <a href="/account/login"
-                                               class="btn btn-primary">赶快抢订</a>
-                                        <?php } ?>
-                                </span>
                                     </li>
-                                    <li style="padding-top: 10px">
-                                        <blockquote><?php echo $item->describe ?></blockquote>
+                                    <li style="margin-bottom: 10px;margin-top: 10px">
+                                        <?php
+                                        $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
+                                        echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
+                                        ?>
+                                        </span>
+                                        <span>带 <strong><?php echo $item->name ?></strong> : </span>
+                                        <?php echo $item->describe ?>
                                     </li>
                                     <li>
                                 <span>
@@ -110,10 +108,10 @@
                                     发布
                                 </span>
                                         <span><i class="icon-map-marker"></i><?php echo $item->address; ?></span>
-                        <span class="offset2" style="float:right ">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
+                        <span style="float:right ">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
                         还剩(<?php echo $item->count - $item->bookedCount ?>)<i class="S_txt3">|</i>
                         <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>"
-                           data-foodid="<?php echo $item->objectId; ?>" href="#">已抢出(<?php echo $item->bookedCount ?>
+                           data-foodid="<?php echo $item->objectId; ?>" href="#">谁在吃(<?php echo $item->bookedCount ?>
                             )</a></span>
                                     </li>
                                     <li class='booked_persons_span' data-isGetData=false
@@ -134,47 +132,65 @@
 </div>
 
 
-<div class="span4">
-    <div class="row-fluid">
+<div class="span2">
+    <div class="row-fluid well-small" style="padding-top: 25px">
         <?php if (!$logged_in) {
 
             ?>
             <div class="span12">
-                <ul class="unstyled well" style="text-align: center;">
-                    <li style="padding-bottom: 10px"><h2>中午要吃什么？</h2></li>
-                    <li style="padding-bottom: 10px">不要再问我要吃什么了(=.=)! </li>
-                    <li style="padding-bottom: 10px"><a class="btn btn-primary" href="/account/register"><strong>立即注册</strong></a></li>
+                <ul class="unstyled" style="text-align: center;">
+                    <li style="padding-bottom: 10px"><h3>中午要吃什么？</h3></li>
+                    <li style="padding-bottom: 10px">不要再问我要吃什么了(=.=)!</li>
+                    <li style="padding-bottom: 10px"><a class="btn btn-primary"
+                                                        href="/account/register"><strong>立即注册</strong></a></li>
                     <li>已有账号，<a class="" href="/account/login">从这里登录>></a></li>
                 </ul>
             </div>
         <?php
         } else {
             ?>
-            <div class="span12 well" style="height: 200px;">
-                <span class="span4">
-                    <a href="/users/<?php echo $userid ?>">
-                        <img style="height: 120px;width: 120px;" src="<?php
-                        if ($avatar) {
-                            echo $avatar;
-                        } else {
-                            echo base_url() . 'application/views/images/large_avatar.png';
-                        }
-                        ?>" alt="<?php echo $realname ?>">
-                    </a>
-                </span>
-                <span class="span8">
-                <ul class="unstyled">
-                    <li style="padding-bottom: 20px">
-                        <a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
-                    <li style="float: left;width: 61px;text-align: center">带过 <a
-                            href="/users/post/<?php echo $userid ?>"><?php echo $post_count ?></a></li>
-                    <li style="float: left;width: 61px;text-align: center">吃过 <a
-                            href="/users/order/<?php echo $userid ?>"><?php echo $order_count ?></a></li>
-                    <li style="float: left;width: 70px;text-align: center">帮助人数 <a
-                            href="#"><?php echo $order_count ?></a></li>
-                    <li style="padding-top: 40px"><a class="btn btn-primary" href="/users/post/<?php echo $userid ?>">我要带饭</a></li>
-                </ul>
+            <div class="span12" style="height: 200px">
+                <span class="row-fluid">
+                    <span class="span5">
+                        <a href="/users/<?php echo $userid ?>">
+                            <img style="height: 70px;width: 70px;" src="<?php
+                            if ($avatar) {
+                                echo $avatar;
+                            } else {
+                                echo base_url() . 'application/views/images/large_avatar.png';
+                            }
+                            ?>" alt="<?php echo $realname ?>">
+                        </a>
                     </span>
+                    <span class="span7">
+                    <ul class="unstyled">
+                        <li>
+                            <a href="/users/<?php echo $userid ?>"><strong><?php echo $realname ?></strong></a></li>
+                        </li>
+                    </ul>
+                        </span>
+                </span>
+                <span class="row-fluid">
+                    <span class="span12">
+                        <ul class="unstyled">
+                            <li style="float: left;width: 61px;text-align: center;border-right-style: solid;border-right-width:1px;border-color:#E6E6E6">
+                                <a href="/users/post/<?php echo $userid ?>"><strong style="display: block"><?php echo $post_count ?></strong><span style="color:  #333333;">带过</span></a>
+                            </li>
+                            <li style="float: left;width: 61px;text-align: center;border-right-style: solid;border-right-width:1px;border-color:#E6E6E6">
+                                <a href="/users/order/<?php echo $userid ?>"><strong style="display: block"><?php echo $order_count ?></strong><span style="color:  #333333;">吃过</span></a>
+                            </li>
+                            <li style="float: left;width: 61px;text-align: center">
+                                <a href="/users/recipe/<?php echo $userid ?>"><strong style="display: block"><?php echo $recipe_count ?></strong><span style="color:  #333333;">日记</span></a>
+                            </li>
+                        </ul>
+                    </span>
+                </span>
+                <span class="row-fluid">
+                    <span class="span12">
+                        <span><a class="btn btn-primary" href="/users/post/<?php echo $userid ?>">我要带饭</a></span>
+                            <span><a class="btn btn-primary" href="/recipes/create">记录美食</a></span>
+                    </span>
+                </span>
             </div>
 
         <?php
@@ -189,8 +205,8 @@
     </div>
 
     <div class="row-fluid">
-        <div class="span12 well">
-            <div class="roll-data">
+        <div class="span12">
+            <div class="roll-data" style="font-size: 12px">
                 <ul>
                     <?php foreach ($comments as $item):
                         ?>

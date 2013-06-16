@@ -1,7 +1,7 @@
 <?php if ($logged_in && $userid == $user->objectId) {
     ?>
-    <div class="row" style="margin-top: 40px">
-        <div class="span8 offset1">
+    <div class="row-fluid" style="margin-top: 40px">
+        <div class="span6 offset2">
             <?php
             $this->load->helper('form');
             $attributes['class'] = 'form-horizontal';
@@ -54,51 +54,51 @@
     </div>
 <?php } ?>
 
-<div class="row" style="margin-top: 40px">
-    <div class="span8 offset1">
+<div class="row-fluid" style="margin-top: 40px">
+    <div class="span6 offset2">
 
         <?php foreach ($posts as $item):
-                ?>
-                <div class="span8">
-                    <div class="well row">
-                        <div class="span1">
-                            <ul class="unstyled">
-                                <li>
-                                    <?php
-                                    $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
-                                    echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
-                                    ?>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="span6">
-                            <ul class="unstyled">
+            ?>
+            <div class="row-fluid" style="border-bottom: 1px solid #EAEAE2;margin-bottom: 10px">
+                <div class="span1" style="width:50px">
+                    <ul class="unstyled">
+                        <li>
+                            <?php
+                            $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
+                            ?>
+                            <div class="ydtime">
+                                <span class="dblok"><?php echo $eatDate['month'] ?>月</span>
+                                <span class="tdate"><?php echo $eatDate['day'] ?></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span10">
+                    <ul class="unstyled">
 
-                                <li>
-                                    <span>带了<strong><?php echo $item->name ?></strong></span>
-                                </li>
-                                <li>
-                                    <blockquote><?php echo $item->describe ?></blockquote>
-                                </li>
-                                <li>
+                        <li>
+                            <span><strong><?php echo $item->name ?></strong></span>
+                        </li>
+                        <li style="margin-bottom: 10px;margin-top: 10px">
+                            <?php echo $item->describe ?>
+                        </li>
+                        <li>
                                 <span>
-                                    <?php
-                                    $createDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->createdAt);
-                                    echo $createDate['month'] . '-' . $createDate['day'] . ' ' . $createDate['hour'] . ':' . $createDate['minute'];
-                                    ?>
+                                    <?php echo $item->createdAt; ?>
                                     发布
                                 </span>
-                        <span class="offset2">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
-                        还剩(<?php echo $item->count - $item->bookedCount ?>)<i class="S_txt3">|</i>
-                        <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>" data-foodid="<?php echo $item->objectId; ?>" href="#">已抢出(<?php echo $item->bookedCount ?>)</a></span>
-                                </li>
-                                <li class='booked_persons_span' data-isGetData=false id="booked_persons_<?php echo $item->objectId; ?>">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        <span class="offset2" style="float:right ">
+                        <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>"
+                           data-foodid="<?php echo $item->objectId; ?>" href="#">谁吃了(<?php echo $item->bookedCount ?>
+                            )</a></span>
+                        </li>
+                        <li class='booked_persons_span' data-isGetData=false
+                            id="booked_persons_<?php echo $item->objectId; ?>">
+                        </li>
+                    </ul>
                 </div>
-            <?php
+            </div>
+        <?php
         endforeach
         ?>
 

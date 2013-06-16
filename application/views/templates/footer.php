@@ -29,6 +29,7 @@
         $('#i-post').tooltip({placement:'bottom'});
         $('#i-comment').tooltip({placement:'bottom'});
         $('#i-setting').tooltip({placement:'bottom'});
+        $('#i-recipe').tooltip({placement:'bottom'});
 
         $('.datepicker').datepicker();
 

@@ -148,8 +148,9 @@ class Account extends Base
 
             if ($this->is_sae) {
                 $image_url = $upload_data['file_url'];
-                $s = new SaeStorage();
-                $thumb_url = $s->getUrl($this->upload_path, $image_thumbnail);
+                $image_url_array = explode('/',$image_url);
+                $image_url_array[sizeof($image_url_array)-1]=$image_thumbnail;
+                $thumb_url = join('/',$image_url_array);
             }
 
             $this->delete_image($this->avatar);

@@ -17,24 +17,11 @@ class Posts extends Base
         $this->load->model('post_model');
     }
 
-    public function index()
+    public function create()
     {
         if (!$this->logged_in) {
             redirect('/account/login', 'refresh');
         }
-
-        $data['active'] = 'posts';
-        $this->set_session_data($data);
-        $posts = $this->post_model->get_posts_by_user($this->userid);
-        $data['posts'] = $posts;
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('posts', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
-    public function create()
-    {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', '菜名', 'required');
         $this->form_validation->set_rules('describe', '描述', 'required');
@@ -44,11 +31,9 @@ class Posts extends Base
         if ($this->form_validation->run() == FALSE) {
             $data['active'] = 'posts';
             $this->set_session_data($data);
-            $posts = $this->post_model->get_posts_by_user($this->userid);
-            $data['posts'] = $posts;
 
             $this->load->view('templates/header', $data);
-            $this->load->view('posts', $data);
+            $this->load->view('post/create', $data);
             $this->load->view('templates/footer', $data);
         } else {
             $name = $this->input->post('name');

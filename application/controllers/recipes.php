@@ -16,7 +16,7 @@ class Recipes extends Base
         parent::__construct();
         if ($this->is_sae) {
             $this->upload_path = 'images/recipe';
-            $this->thumbnail_source_image_path = 'images/recipe';
+            $this->thumbnail_source_image_path = 'images/recipe/';
         } else {
             $this->upload_path = './uploads/';
             $this->thumbnail_source_image_path = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
@@ -38,6 +38,9 @@ class Recipes extends Base
 
     public function create()
     {
+        if (!$this->logged_in) {
+            redirect('/account/login', 'refresh');
+        }
         $data['title'] = '记录我家美食';
         $this->set_session_data($data);
         $this->load->view('templates/header', $data);
@@ -63,8 +66,10 @@ class Recipes extends Base
             $thumb_url = 'http://' . $_SERVER['SERVER_NAME'] . '/uploads/' . $image_thumbnail;
 
             if ($this->is_sae) {
-                $s = new SaeStorage();
-                $thumb_url = $s->getUrl($this->upload_path, $image_thumbnail);
+                $image_url = $upload_data['file_url'];
+                $image_url_array = explode('/',$image_url);
+                $image_url_array[sizeof($image_url_array)-1]=$image_thumbnail;
+                $thumb_url = join('/',$image_url_array);
             }
 
             echo "FILEID:" . $thumb_url;

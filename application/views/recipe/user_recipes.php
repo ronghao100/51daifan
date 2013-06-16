@@ -1,5 +1,16 @@
-<div class="row-fluid" style="margin-top: 40px">
+<div class="row-fluid">
     <div class="span6 offset2">
+
+
+        <div class="row-fluid">
+            <span class="span12">
+                        <?php if ($logged_in && $userid == $user->objectId && sizeof($recipes) == 0) {
+                            echo "你还没有记录过咱自己家的美食日记呢 <a href='/recipes/create'> 记录咱家的美食日记</a>";
+                        }
+                        ?>
+                <a style="float: right" class="btn btn-primary" href="/recipes/create">
+                    <i class="icon-camera icon-white"></i> 我要记录</a></span>
+        </div>
 
         <?php foreach ($recipes as $item):
 //            var_dump($item);

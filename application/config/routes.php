@@ -52,7 +52,6 @@ $route['users/edit_introduce'] = 'users/edit_introduce';
 $route['users/edit_address'] = 'users/edit_address';
 $route['users/(:any)'] = 'users/post/$1';
 $route['posts/create'] = 'posts/create';
-$route['posts'] = 'posts';
 $route['orders/create'] = 'orders/create';
 $route['orders/get_by_post'] = 'orders/get_by_post';
 $route['orders/comment'] = 'orders/comment';

@@ -8,7 +8,7 @@
     visibility: hidden;
 }
 
-.WB_media_expand{
+.WB_media_expand {
     border-style: solid;
     border-width: 1px;
     margin: 5px 0 15px;
@@ -25,6 +25,7 @@
     overflow: hidden;
     padding: 0 0 11px;
 }
+
 .WB_face {
     float: left;
     position: relative;
@@ -42,6 +43,7 @@
 .WB_feed .WB_func .WB_handle .S_txt3 {
     margin: 0 6px 0 8px;
 }
+
 .S_txt3 {
     color: #AEAEAE;
 }
@@ -50,14 +52,14 @@
     display: block;
 }
 
-.prtp{
+.prtp {
     float: left;
     height: 140px;
     margin: 0 25px 25px 0;
     width: 140px;
 }
 
-.piic{
+.piic {
     height: 140px;
     position: relative;
     width: 140px;
@@ -89,6 +91,7 @@
     margin: 0 10px 10px 0;
     width: 140px;
 }
+
 .ydtime {
     background: none repeat scroll 0 0 #333333;
     color: #FFFFFF;
@@ -97,10 +100,24 @@
     text-align: center;
     width: 48px;
 }
+
 .dblok {
     display: block;
 }
+
 .tdate {
     font-size: 24px;
     font-weight: bold;
 }
+
+.nav_icon_new {
+    background: url("../images/nav_icon_new.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    font-size: 1px;
+    height: 9px;
+    position: absolute;
+    right: 3px;
+    top: 8px;
+    width: 21px;
+}
+

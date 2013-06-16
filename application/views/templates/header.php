@@ -25,6 +25,7 @@
                     </li>
                     <li>
                         <a href="/recipes">我家美食</a>
+                        <em class="nav_icon_new"></em>
                     </li>
                 </ul>
             </div>
@@ -35,7 +36,7 @@
                     echo '<li><a href="/account/register">注册</a></li>';
                 } else {
                     echo '<li><a href="/users/' . $userid . '">' . $realname . '</a></li>';
-                    echo '<li><a id="i-post" title="我要带饭" href="/users/post/' . $userid . '"><i class="icon-edit"></i></a></li>';
+                    echo '<li><a id="i-post" title="我要带饭" href="/posts/create"><i class="icon-edit"></i></a></li>';
                     echo '<li><a id="i-recipe" title="记录咱家美食" href="/recipes/create"><i class="icon-camera"></i></a></li>';
                     echo '<li><a id="i-comment" title="我要评论" href="/users/order/' . $userid . '"><i class="icon-comment"></i></a></li>';
                     echo '<li class="dropdown">';

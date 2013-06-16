@@ -95,10 +95,10 @@
                 ?>
                 <div class="span12">
                     <ul class="unstyled" style="text-align: center;">
-                        <li style="padding-bottom: 10px"><h3>中午要吃什么？</h3></li>
-                        <li style="padding-bottom: 10px">不要再问我要吃什么了(=.=)!</li>
+                        <li style="padding-bottom: 10px"><h3>晚上要吃什么？</h3></li>
+                        <li style="padding-bottom: 10px">记录咱自己家做的美食(^-^)!</li>
                         <li style="padding-bottom: 10px"><a class="btn btn-primary"
-                                                            href="/account/register"><strong>立即注册</strong></a></li>
+                                                            href="/account/register"><strong>立即注册</strong> 记录</a></li>
                         <li>已有账号，<a class="" href="/account/login">从这里登录>></a></li>
                     </ul>
                 </div>
@@ -143,8 +143,7 @@
                 </span>
                 <span class="row-fluid">
                     <span class="span12">
-                        <span><a class="btn btn-primary" href="/users/post/<?php echo $userid ?>">我要带饭</a></span>
-                            <span><a class="btn btn-primary" href="/recipes/create">记录美食</a></span>
+                            <span class="offset3"><a class="btn btn-primary" href="/recipes/create"><i class="icon-camera icon-white"></i> 我要记录</a></span>
                     </span>
                 </span>
                 </div>

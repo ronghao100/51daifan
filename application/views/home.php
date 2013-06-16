@@ -187,8 +187,7 @@
                 </span>
                 <span class="row-fluid">
                     <span class="span12">
-                        <span><a class="btn btn-primary" href="/users/post/<?php echo $userid ?>">我要带饭</a></span>
-                            <span><a class="btn btn-primary" href="/recipes/create">记录美食</a></span>
+                        <span class="offset3"><a class="btn btn-primary" href="/posts/create"><i class="icon-edit icon-white"></i> 我要带饭</a></span>
                     </span>
                 </span>
             </div>

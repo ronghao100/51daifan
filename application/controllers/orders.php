@@ -30,7 +30,7 @@ class Orders extends Base
             redirect('badluck');
         } else {
             $this->order_model->create($food_id, $food_owner_id, $food_owner_name, $user_id, $user_name);
-            redirect('home', 'refresh');
+            redirect('index.php', 'refresh');
         }
     }
 

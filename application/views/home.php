@@ -1,72 +1,74 @@
 <div class="row-fluid">
 
 <div class="span6 offset2">
-    <div class="row-fluid">
-        <div class="span12">
-            <div id="myCarousel" class="carousel">
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    <div class="active item">
-                        <img style="height: 200px" src="application/views/images/amyren.png" alt="">
+<div class="row-fluid">
+    <div class="span12">
+        <div id="myCarousel" class="carousel">
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img style="height: 200px" src="application/views/images/amyren.png" alt="">
 
-                        <div class="carousel-caption">
-                            <a href="/users/post/27"><h4>logo诞生，我们的美女设计师amyren。</h4></a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img style="height: 200px" src="application/views/images/fanhe.jpg" alt="">
-
-                        <div class="carousel-caption">
-                            <h4>加入我们，和大家一起分享我们的爱心便当。</h4>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img style="height: 200px" src="application/views/images/chihuo.jpg" alt="">
-
-                        <div class="carousel-caption">
-                            <h4>想吃妹纸带的爱心便当？你邀请，我买单!</h4>
-                        </div>
+                    <div class="carousel-caption">
+                        <a href="/users/post/27"><h4>logo诞生，我们的美女设计师amyren。</h4></a>
                     </div>
                 </div>
-                <!-- Carousel nav -->
-                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                <div class="item">
+                    <img style="height: 200px" src="application/views/images/fanhe.jpg" alt="">
+
+                    <div class="carousel-caption">
+                        <h4>加入我们，和大家一起分享我们的爱心便当。</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <img style="height: 200px" src="application/views/images/chihuo.jpg" alt="">
+
+                    <div class="carousel-caption">
+                        <h4>想吃妹纸带的爱心便当？你邀请，我买单!</h4>
+                    </div>
+                </div>
             </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
     </div>
+</div>
 
-    <div class="row-fluid">
-        <div class="span12">
-            <strong>谁在分享自己的爱心便当</strong>
-        </div>
+<div class="row-fluid">
+    <div class="span12">
+        <strong>谁在分享自己的爱心便当</strong>
     </div>
+</div>
 
-    <div class="row-fluid">
-        <div class="span12">
+<div class="row-fluid">
+    <div class="span12">
 
-            <?php foreach ($posts as $item):
-                ?>
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="row-fluid" style="border-bottom: 1px solid #EAEAE2;margin-bottom: 10px">
-                            <div class="span1" style="width:50px">
-                                <ul class="unstyled">
-                                    <li><a href="/users/<?php echo $item->user ?>">
-                                            <img style="height: 50px;width: 50px;"
-                                                 src="<?php
-                                                 if ($item->avatarThumbnail) {
-                                                     echo $item->avatarThumbnail;
-                                                 } else {
-                                                     echo base_url() . 'application/views/images/medium_avatar.png';
-                                                 }
-                                                 ?>" alt="<?php echo $item->realName ?>">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="span10">
-                                <ul class="unstyled">
-                                    <li>
+        <?php foreach ($posts as $item):
+            ?>
+            <div class="row-fluid" style="border-bottom: 1px solid #EAEAE2;margin-bottom: 10px">
+                <div class="span12">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="row-fluid">
+                                <div class="span1" style="width:50px">
+                                    <ul class="unstyled">
+                                        <li><a href="/users/<?php echo $item->user ?>">
+                                                <img style="height: 50px;width: 50px;"
+                                                     src="<?php
+                                                     if ($item->avatarThumbnail) {
+                                                         echo $item->avatarThumbnail;
+                                                     } else {
+                                                         echo base_url() . 'application/views/images/medium_avatar.png';
+                                                     }
+                                                     ?>" alt="<?php echo $item->realName ?>">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="span10">
+                                    <ul class="unstyled">
+                                        <li>
                                             <span>
                                                 <a href="/users/<?php echo $item->user ?>">
                                                     <strong>
@@ -92,40 +94,95 @@
                                                        class="btn btn-primary">赶快抢订</a>
                                                 <?php } ?>
                                             </span>
-                                    </li>
-                                    <li style="margin-bottom: 10px;margin-top: 10px">
-                                        <?php
-                                        $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
-                                        echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
-                                        ?>
-                                        </span>
-                                        <span>带 <strong><?php echo $item->name ?></strong> : </span>
-                                        <?php echo $item->describe ?>
-                                    </li>
-                                    <li>
+                                        </li>
+                                        <li style="margin-bottom: 10px;margin-top: 10px">
+                                            <?php
+                                            $eatDate = date_parse_from_format("Y-m-d\TH:i:s.Z", $item->eatDate);
+                                            echo $eatDate['month'] . '月' . $eatDate['day'] . '号';
+                                            ?>
+                                            </span>
+                                            <span>带 <strong><?php echo $item->name ?></strong> : </span>
+                                            <?php echo $item->describe ?>
+                                        </li>
+                                        <li>
                                 <span>
                                     <?php echo $item->createdAt; ?>
                                     发布
                                 </span>
-                                        <span><i class="icon-map-marker"></i><?php echo $item->address; ?></span>
+                                                <span><i
+                                                        class="icon-map-marker"></i><?php echo $item->address; ?></span>
                         <span style="float:right ">总共(<?php echo $item->count ?>)<i class="S_txt3">|</i>
                         还剩(<?php echo $item->count - $item->bookedCount ?>)<i class="S_txt3">|</i>
-                        <a class='booked_persons_link' onclick="return false" data-baseUrl="<?php echo base_url(); ?>"
-                           data-foodid="<?php echo $item->objectId; ?>" href="#">谁在吃(<?php echo $item->bookedCount ?>
-                            )</a></span>
-                                    </li>
-                                    <li class='booked_persons_span' data-isGetData=false
-                                        id="booked_persons_<?php echo $item->objectId; ?>">
-                                    </li>
-                                </ul>
+                        谁在吃(<?php echo $item->bookedCount ?>)</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row-fluid">
+                        <?php
+                        if ($item->orders) {
+                            ?>
+                            <div class="span10 offset1" style="margin-bottom: 15px">
+                                <div class="arrow offset11">
+                                    <div class="arrow_border"></div>
+                                    <div class="arrow_content"></div>
+                                </div>
+                                <div class="row-fluid"
+                                     style="background-color:#EEEEEE ;border-bottom: 1px solid #D9D9D9;">
+                                    <div class="span12">
+                                        <i class="icon-heart "></i>
+                                        <?php
+                                        $orders = $item->orders;
+                                        foreach ($orders as $order):
+                                            ?>
+                                            <span>
+                                        <a href="/users/<?php echo $order->owner ?>">
+                                            <?php echo $order->ownerName ?>
+                                        </a>
+                                    </span>
+                                        <?php
+                                        endforeach
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                                $orders = $item->orders;
+                                foreach ($orders as $order):
+                                    if ($order->comment) {
+                                        ?>
+                                        <div class="row-fluid" style="background-color:#EEEEEE ">
+                                            <div class="span12">
+                                            <span>
+                                        <a href="/users/<?php echo $order->owner ?>">
+                                            <?php echo $order->ownerName ?>
+                                        </a>:
+                                    </span>
+                                            <span>
+                                                <?php echo $order->comment ?>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                endforeach
+                                ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
-            <?php
-            endforeach
-            ?>
-
+            </div>
+        <?php
+        endforeach
+        ?>
+        <div class="row-fluid">
+            <div class="span12 page">
+                <?php echo $this->my_page->show(1); ?>
+            </div>
+        </div>
         </div>
     </div>
 
@@ -174,20 +231,27 @@
                     <span class="span12">
                         <ul class="unstyled">
                             <li style="float: left;width: 61px;text-align: center;border-right-style: solid;border-right-width:1px;border-color:#E6E6E6">
-                                <a href="/users/post/<?php echo $userid ?>"><strong style="display: block"><?php echo $post_count ?></strong><span style="color:  #333333;">带过</span></a>
+                                <a href="/users/post/<?php echo $userid ?>"><strong
+                                        style="display: block"><?php echo $post_count ?></strong><span
+                                        style="color:  #333333;">带过</span></a>
                             </li>
                             <li style="float: left;width: 61px;text-align: center;border-right-style: solid;border-right-width:1px;border-color:#E6E6E6">
-                                <a href="/users/order/<?php echo $userid ?>"><strong style="display: block"><?php echo $order_count ?></strong><span style="color:  #333333;">吃过</span></a>
+                                <a href="/users/order/<?php echo $userid ?>"><strong
+                                        style="display: block"><?php echo $order_count ?></strong><span
+                                        style="color:  #333333;">吃过</span></a>
                             </li>
                             <li style="float: left;width: 61px;text-align: center">
-                                <a href="/users/recipe/<?php echo $userid ?>"><strong style="display: block"><?php echo $recipe_count ?></strong><span style="color:  #333333;">日记</span></a>
+                                <a href="/users/recipe/<?php echo $userid ?>"><strong
+                                        style="display: block"><?php echo $recipe_count ?></strong><span
+                                        style="color:  #333333;">日记</span></a>
                             </li>
                         </ul>
                     </span>
                 </span>
                 <span class="row-fluid">
                     <span class="span12">
-                        <span class="offset3"><a class="btn btn-primary" href="/posts/create"><i class="icon-edit icon-white"></i> 我要带饭</a></span>
+                        <span class="offset3"><a class="btn btn-primary" href="/posts/create"><i
+                                    class="icon-edit icon-white"></i> 我要带饭</a></span>
                     </span>
                 </span>
             </div>
@@ -197,40 +261,7 @@
         ?>
     </div>
 
-    <div class="row-fluid">
-        <div class="span12">
-            <strong>谁在说</strong>
-        </div>
-    </div>
 
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="roll-data" style="font-size: 12px">
-                <ul>
-                    <?php foreach ($comments as $item):
-                        ?>
-                        <li>
-                            <a href="/users/<?php echo $item->owner ?>">
-                                <strong>
-                                    <?php echo $item->ownerName; ?>
-                                </strong>
-                            </a>
-                            对
-                            <a href="/users/<?php echo $item->foodOwner ?>">
-                                <strong>
-                                    <?php echo $item->foodOwnerName; ?>
-                                </strong>
-                            </a>
-                            说:<br>
-                            <?php echo $item->comment; ?>
-                        </li>
-                    <?php
-                    endforeach
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </div>
 </div>
 </div>
 
@@ -253,4 +284,5 @@
     <input type="text" name="foodId" id="foodId">
     <input type="text" name="foodOwnerId" id="foodOwnerId">
     <input type="text" name="foodOwnerName" id="foodOwnerName">
+    <input type="text" name="base_url" id="base_url" value="<?php echo base_url()?>">
 </form>

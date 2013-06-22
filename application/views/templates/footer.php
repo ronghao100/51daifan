@@ -48,31 +48,6 @@
 
         $('.booked_persons_span').hide();
 
-        $('.booked_persons_link').bind('click', function () {
-            var food_id = $(this).data('foodid');
-            var base_url = $(this).data('baseurl');
-            var booked_persons_span_id = 'booked_persons_' + food_id;
-            var booked_persons_span = $('#' + booked_persons_span_id);
-            var is_get_data = booked_persons_span.data('isGetData');
-            if (is_get_data) {
-                booked_persons_span.toggle();
-            } else {
-                $.getJSON(base_url + "orders/get_by_post", {food_id: food_id}, function (data) {
-                    var items = [];
-                    $.each(data, function () {
-                        var owner_name = this.ownerName;
-                        var owner_id = this.owner;
-                        items.push("<a href=" + base_url + 'users/' + owner_id + ">" + owner_name + "</a> ");
-                    });
-                    $('<span/>', {
-                        html: items.join('')
-                    }).appendTo(booked_persons_span);
-                    booked_persons_span.data('isGetData', true);
-                    booked_persons_span.show();
-                });
-            }
-        });
-
         $('.comment-button').bind('click', function () {
             var order_id = $(this).data('orderid');
             var base_url = $(this).data('baseurl');

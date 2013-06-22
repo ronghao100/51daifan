@@ -59,7 +59,7 @@ class Account extends Base
                 'logged_in' => TRUE
             );
             $this->session->set_userdata($session_data);
-            redirect('home', 'refresh');
+            redirect('index.php', 'refresh');
         }
     }
 
@@ -97,7 +97,7 @@ class Account extends Base
                 'logged_in' => TRUE
             );
             $this->session->set_userdata($session_data);
-            redirect('home', 'refresh');
+            redirect('index.php', 'refresh');
         }
     }
 
@@ -113,7 +113,7 @@ class Account extends Base
         $this->session->unset_userdata('order_count');
         $this->session->unset_userdata('avatar');
         $this->session->unset_userdata('avatar_thumbnail');
-        redirect('home', 'refresh');
+        redirect('index.php', 'refresh');
     }
 
     public function avatar()

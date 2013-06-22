@@ -92,4 +92,32 @@ class Base extends CI_Controller
         }
     }
 
+    public function add_image()
+    {
+        if (isset($_POST["PHPSESSID"])) {
+            session_id($_POST["PHPSESSID"]);
+        }
+        session_start();
+
+        $this->upload_config['upload_path'] = $this->upload_path;
+        $this->load->library('upload', $this->upload_config);
+
+        if (!$this->upload->do_upload("Filedata")) {
+            echo 'ERROR:' . $this->upload->display_errors();
+        } else {
+            $upload_data = $this->upload->data();
+            $image_thumbnail = $this->image_thumbnail($upload_data, 140, 140);
+            $thumb_url = 'http://' . $_SERVER['SERVER_NAME'] . '/uploads/' . $image_thumbnail;
+
+            if ($this->is_sae) {
+                $image_url = $upload_data['file_url'];
+                $image_url_array = explode('/', $image_url);
+                $image_url_array[sizeof($image_url_array) - 1] = $image_thumbnail;
+                $thumb_url = join('/', $image_url_array);
+            }
+
+            echo "FILEID:" . $thumb_url;
+        }
+    }
+
 }

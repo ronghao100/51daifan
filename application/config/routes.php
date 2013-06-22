@@ -61,6 +61,8 @@ $route['recipes/create'] = 'recipes/create';
 $route['recipes/add_image'] = 'recipes/add_image';
 $route['recipes/do_create'] = 'recipes/do_create';
 $route['default_controller'] = "pages/view";
+$route['about'] = "pages/show/about";
+$route['badluck'] = "pages/show/badluck";
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 

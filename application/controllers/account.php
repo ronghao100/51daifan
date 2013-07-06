@@ -63,6 +63,29 @@ class Account extends Base
         }
     }
 
+    public function rest_register()
+    {
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+
+        $data=array();
+        if ($this->account_model->is_email_used($email)){
+            $data['success']=0;
+            $data['error']=1;
+        }else{
+            $user = $this->account_model->register($name, $password, $email);
+            $data['success']=1;
+            $data['error']=0;
+            $data['user']['name']=$name;
+            $data['user']['email']=$email;
+            $data['user']['id']=$user->objectId;
+            $data['user']['createdAt']=$user->createdAt;
+
+        }
+        echo json_encode($data);
+    }
+
     public function login()
     {
         $this->load->library('form_validation');
@@ -99,6 +122,28 @@ class Account extends Base
             $this->session->set_userdata($session_data);
             redirect('index.php', 'refresh');
         }
+    }
+
+    public function rest_login()
+    {
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+
+        $data=array();
+        $user = $this->account_model->login($email, $password);
+        if (!$user){
+            $data['success']=0;
+            $data['error']=1;
+        }else{
+            $data['success']=1;
+            $data['error']=0;
+            $data['user']['name']=$user->realname;
+            $data['user']['email']=$email;
+            $data['user']['id']=$user->objectId;
+            $data['user']['createdAt']=$user->createdAt;
+
+        }
+        echo json_encode($data);
     }
 
     public function logout()

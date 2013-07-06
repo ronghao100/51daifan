@@ -37,6 +37,10 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['api/register'] = 'account/rest_register';
+$route['api/login'] = 'account/rest_login';
+$route['api/posts'] = 'posts/rest_view';
+
 $route['account/register'] = 'account/register';
 $route['account/login'] = 'account/login';
 $route['account/logout'] = 'account/logout';
@@ -63,6 +67,7 @@ $route['recipes/do_create'] = 'recipes/do_create';
 $route['default_controller'] = "pages/view";
 $route['about'] = "pages/show/about";
 $route['badluck'] = "pages/show/badluck";
+$route['test'] = "pages/show/test";
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 

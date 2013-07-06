@@ -22,15 +22,38 @@ class Post_model extends CI_Model
 
     public function get_posts_by_page($offset, $num)
     {
-        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId ORDER BY eatDate DESC LIMIT ? ,?',
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId ORDER BY createdAt DESC LIMIT ? ,?',
             array((int)$offset, (int)$num));
         $posts = $query->result();
         return $posts;
     }
 
+    public function get_first_posts()
+    {
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId ORDER BY createdAt DESC LIMIT 0 ,10');
+        $posts = $query->result_array();
+        return $posts;
+    }
+
+    public function get_latest_posts($index_id)
+    {
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId AND p.objectId > ? ORDER BY createdAt DESC LIMIT 0 ,10',
+            array((int)$index_id));
+        $posts = $query->result_array();
+        return $posts;
+    }
+
+    public function get_old_posts($index_id)
+    {
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId AND p.objectId < ? ORDER BY createdAt DESC LIMIT 0 ,10',
+            array((int)$index_id));
+        $posts = $query->result_array();
+        return $posts;
+    }
+
     public function get_posts()
     {
-        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId ORDER BY eatDate DESC');
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId ORDER BY createdAt DESC');
         $posts = $query->result();
         return $posts;
     }

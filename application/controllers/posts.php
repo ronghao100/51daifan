@@ -40,10 +40,36 @@ class Posts extends Base
             $describe = $this->input->post('describe');
             $count = $this->input->post('count');
             $eatDate = date_parse_from_format("Y-m-d", $this->input->post('eatDate'));
-            $eatTime=mktime(13,0,0,$eatDate['month'],$eatDate['day'],$eatDate['year']);
+            $eatTime = mktime(13, 0, 0, $eatDate['month'], $eatDate['day'], $eatDate['year']);
 
-            $this->post_model->create($name, $describe,$count, $eatTime,$this->userid);
+            $this->post_model->create($name, $describe, $count, $eatTime, $this->userid);
             redirect('index.php', 'refresh');
         }
+    }
+
+    public function rest_view()
+    {
+        $type = $_GET['type'];
+        $current_id = isset($_GET['currentId']) ? $_GET['currentId'] : 1;
+
+        $data['success'] = 1;
+        $data['error'] = 0;
+
+        $posts = array();
+
+        //o-> first load 1->refresh latest rows 2->refresh old rows
+        if ($type == 0) {
+            $posts = $this->post_model->get_first_posts(0, 10);
+        } elseif ($type == 1) {
+            $posts = $this->post_model->get_latest_posts($current_id);
+        } elseif ($type == 2) {
+            $posts = $this->post_model->get_old_posts($current_id);
+            echo $posts;
+        }
+
+        $data['posts'] = $posts;
+
+        echo json_encode($data);
+
     }
 }

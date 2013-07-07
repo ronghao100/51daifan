@@ -68,6 +68,7 @@ class Posts extends Base
         }
 
         $data['posts'] = $posts;
+        header('Content-Type: application/json');
 
         echo json_encode($data);
 

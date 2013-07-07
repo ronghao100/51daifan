@@ -83,6 +83,7 @@ class Account extends Base
             $data['user']['createdAt']=$user->createdAt;
 
         }
+        header('Content-Type: application/json');
         echo json_encode($data);
     }
 
@@ -143,6 +144,7 @@ class Account extends Base
             $data['user']['createdAt']=$user->createdAt;
 
         }
+        header('Content-Type: application/json');
         echo json_encode($data);
     }
 

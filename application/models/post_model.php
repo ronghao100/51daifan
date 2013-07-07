@@ -37,7 +37,7 @@ class Post_model extends CI_Model
 
     public function get_latest_posts($index_id)
     {
-        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId AND p.objectId > ? ORDER BY createdAt DESC LIMIT 0 ,10',
+        $query = $this->db->query('SELECT p.*,u.realName,u.avatarThumbnail,u.address FROM post p,user u WHERE p.user = u.objectId AND p.objectId > ? ORDER BY createdAt DESC ',
             array((int)$index_id));
         $posts = $query->result_array();
         return $posts;
